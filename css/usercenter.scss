@@ -1,0 +1,154 @@
+.side-nav {
+  float: left;
+  width: 160px;
+  background-color: #fff;
+  ul {
+    padding: 20px;
+  }
+  li {
+    & + li {
+      margin-top: 20px;
+    }
+    &.active {
+      a {
+        color: #ff6000;
+      }
+    }
+    a {
+      color: #333;
+      &:hover {
+        cursor: pointer;
+        color: #ff6000;
+      }
+    }
+  }
+}
+.page-contrnt {
+  display: none;
+  margin-left: 170px;
+  .sp-details {
+    > div {
+      margin-top: 12px;
+    }
+    &.sp-pl {
+      .dt {
+        width: 90px;
+      }
+    }
+  }
+  .sp-pl {
+    .sp-reviews-tag {
+      li {
+        span {
+          padding: 0 15px;
+          &:hover {
+            cursor: pointer;
+            border-color: #fc8860;
+            color: #fc8860;
+          }
+          &:active {
+            border-color: #fc8860;
+            background-color: #fc8860;
+            color: #fff;
+          }
+        }
+        &.active {
+          span {
+            border-color: #fc8860;
+            background-color: #fc8860;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+  .el-card {
+    border: 1px solid #ebeef5;
+    .el-card__header {
+      padding: 10px 0;
+    }
+  }
+  .el-button {
+    font-size: 12px;
+  }
+}
+.s-hr {
+  border-right: 1px dashed #ccc;
+}
+
+.user-nav {
+  overflow: hidden;
+  li {
+    float: left;
+    padding: 0 20px;
+    border-right: 1px solid #ddd;
+    &:first-child {
+      padding-left: 0;
+    }
+    &:last-child {
+      border-right: 0;
+    }
+    &.active {
+      span {
+        color: #ff6000;
+      }
+    }
+    span {
+      cursor: pointer;
+      &:hover {
+        background-color: transparent;
+        color: #ff6000;
+      }
+      &:focus,
+      &:active {
+        color: #ff6000;
+      }
+    }
+  }
+  select {
+    border: 0;
+    &:active {
+      border: 0;
+    }
+  }
+  .active {
+    select {
+      color: #ff6000;
+    }
+  }
+}
+
+.user-center {
+  .li {
+    margin-bottom: 10px;
+  }
+  .li-content {
+    border: 1px solid #ebeef5;
+    display: block;
+    padding: 15px 0 15px 15%;
+    overflow: hidden;
+    img,
+    span {
+      float: left;
+    }
+    span {
+      margin-top: 10px;
+      margin-left: 10px;
+    }
+    small {
+      color: #888;
+      margin-bottom: 10px;
+    }
+    h3 {
+      color: #333;
+    }
+  }
+}
+
+//通知
+.el-alert__content {
+  width: 100%;
+  .el-alert__title {
+    color: #666;
+  }
+}

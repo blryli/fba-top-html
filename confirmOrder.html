@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="css/theme-chalk/index.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/header-footer.css">
+    <link rel="stylesheet" type="text/css" href="icon-font/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="css/public.css">
+    <link rel="stylesheet" type="text/css" href="css/sp-data.css">
+    <link rel="stylesheet" type="text/css" href="css/lowerPrice.css">
+    <link rel="stylesheet" type="text/css" href="css/confirmOrder.css">
+    <title>fba-top</title>
+</head>
+
+<body>
+    <div id="app">
+        <header class="sp-container">
+            <div class="header el-row">
+                <div class="icon el-col el-col-4">
+                    <i id="openNav" class="sp-menu-icon"></i>
+                </div>
+                <div class="logo el-col el-col-4">
+                    <a href="index.html">
+                        <img src="img/logo.png" alt="logo">
+                    </a>
+                </div>
+                <nav class="el-col el-col-14">
+                    <ul id="nav" class="nav">
+                        <li>
+                            <a href="index.html">首页</a>
+                        </li>
+                        <!-- <li><a href="program.html">省钱方案</a></li> -->
+                    </ul>
+                </nav>
+                <ul class="login el-col el-col-6">
+                    <li>
+                        <a href="login.html">登陆</a>
+                        <i class="hr">|</i>
+                        <a href="signin.html">注册</a>
+                    </li>
+                    <li>
+                        <div class="el-dropdown">
+                            <span class="el-dropdown-link el-dropdown-selfdefine " aria-haspopup="list" aria-controls="dropdown-menu-3401" role="button"
+                                tabindex="0">
+                                <i class="iconfont icon-name"></i>
+                                <span id="userName"></span>
+                            </span>
+                            <ul class="el-dropdown-menu el-popper" style=" z-index: 2002;">
+                                <li class="el-dropdown-menu__item">个人中心</li>
+                                <li class="el-dropdown-menu__item">我的订单</li>
+                                <li class="el-dropdown-menu__item">我的钱包</li>
+                                <li class="el-dropdown-menu__item">商品管理</li>
+                                <li id="loginOut" class="el-dropdown-menu__item el-dropdown-menu__item--divided">
+                                    <i class="iconfont icon-tuichu"></i>&nbsp;&nbsp;退出</li>
+                                <div class="popper__arrow" style="left: 43.3828px;"></div>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <div class="sp-bg">
+            <div class="sp-container">
+                <main class="">
+                    <div role="alert" class="el-alert el-alert--warning sp">
+                        <i class="el-alert__icon el-icon-warning is-big"></i>
+                        <div class="el-alert__content">
+                            <span class="el-alert__title">温馨提示：在订单未发货之前可取消订单以及申请改期。具体条款请查看</span>
+                            <a href="#">&nbsp;退改须知</a>
+                            </i>
+                        </div>
+                    </div>
+                    <div class="el-row sp-data-container">
+                        <div class="m-t-20 el-col el-col-xs-24 el-col-md-16">
+                            <div class="el-card box-card">
+                                <div class="el-card__header">
+                                    <div class="clearfix">
+                                        <span>订单信息</span>
+                                    </div>
+                                </div>
+                                <div class="el-card__body">
+                                    <div class="sp-details">
+                                        <div>
+                                            <span class="dt">产品名称</span>美西海派
+                                        </div>
+                                        <div>
+                                            <span class="dt">运输时长</span>20~25天</div>
+                                        <div>
+                                            <span class="dt">目的地</span>
+                                            <ul class="sp-adress">
+                                                <li v-for="(item, index) in adress" :class="{active: index == 0}" v-text="item">&nbsp;</li>
+                                            </ul>
+                                        </div>
+                                        <div class="sp-line"></div>
+                                        <div class="p">
+                                            <span class="dt">预约时间</span>
+                                            <div class="el-date-editor el-input el-input--small el-input--prefix el-input--suffix">
+                                                <!-- <div  class="el-input__inner"></div> -->
+                                                <div class="el-input">
+                                                    <input id="cutData" v-model="time" placeholder="选择日期" type="text" class="el-input__inner">
+                                                </div>
+                                                <span class="el-input__prefix">
+                                                    <i class="el-input__icon el-icon-date"></i>
+                                                </span>
+                                                <!-- 日期弹窗 -->
+                                                <div id='sp-data-box2' class="sp-data-box boxshaw"></div>
+                                            </div>
+                                        </div>
+                                        <div class="el-input el-input--small">
+                                            <span class="dt">预定货量</span>
+                                            <div class="sp-weight-box">
+                                                <div class="el-input el-input-group el-input-group--append" style="width: 150px;">
+                                                    <input id="sp-weight" placeholder="输入重量" type="number" v-model="weight" class="el-input__inner">
+                                                    <div class="el-input-group__append" v-text="unit"></div>
+                                                </div>
+                                                <span class="small" v-if="time">&nbsp;余
+                                                    <strong ref="conIn" v-text="count"></strong>
+                                                    <span v-text="unit"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="el-card box-card m-t-20">
+                                <div class="el-card__header">
+                                    <div class="clearfix">
+                                        <span>联系人信息</span>
+                                        <label role="checkbox" style="float:right;">
+                                            <div class="icheckbox_square-green" style="position: relative; width: 14px; height: 14px;">
+                                                <input type="checkbox" class="check">
+                                                <i class="iconfont icon-gou" style="font-size: 14px;"></i>
+                                            </div>&nbsp;设为默认联系人
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="el-card__body">
+
+                                    <div class="sp-details">
+                                        <div class="dl">
+                                            <span class="dt">姓名</span>
+                                            <div class="d el-input el-input--small">
+                                                <input v-model="user.name" class="el-input__inner" placeholder="输入重量" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="dl">
+                                            <span class="dt">联系电话</span>
+                                            <div class="d el-input el-input--small">
+                                                <input v-model="user.phone" class="el-input__inner" placeholder="输入重量" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="el-card box-card m-t-20" id="loding">
+                                <el-tabs v-model="activeName2" type="card" style="padding:20px;">
+                                    <!-- 优惠券 -->
+                                    <el-tab-pane label="优惠券" name="first">
+                                        <ul class="quan" ref="ul">
+                                            <li class="quan-item" :class="{active: item.active == true}" v-for="(item, index) in quanArr" v-if="moneyAll >= item.man"
+                                                @click="quanTab(index, item)">
+                                                <div class="quan-item-bg">
+                                                    <p class="quan-border">
+                                                        <i class="el-icon-check"></i>
+                                                    </p>
+                                                    <span class="tx-x"></span>
+                                                    <p class="quan-title">
+                                                        <span class="quan-h1" v-text="item.money"></span>
+                                                        <span class="text" v-if="item.man == '0'">满&nbsp;任意金额</span>
+                                                        <span class="text" v-text="'满 '+item.man" v-else></span>
+                                                    </p>
+                                                    <p class="text">有效期
+                                                        <span v-text="item.time + '至' + item.time"></span>
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div style="color:#888;" v-if="!quanShow">无可用优惠券</div>
+                                    </el-tab-pane>
+                                    <!-- 抵用券 -->
+                                    <el-tab-pane label="抵用券" name="second">
+                                        请输入抵用券密码
+                                        <div class="m-t-10">
+                                            <el-form :model="cardForm" :rules="rules" ref="cardForm" size="small">
+                                                <el-form-item prop="password">
+                                                    <el-input v-model="cardForm.password" style="width:50%;min-width:200px;" placeholder="密码只包含数字 0-9，大写字母 A-F"></el-input>
+                                                    <el-button type="primary" @click="submitForm('cardForm')">
+                                                        <span>绑定并使用</span>
+                                                    </el-button>
+                                                </el-form-item>
+                                            </el-form>
+                                            <ul class="quan m-t-20" ref="ul">
+                                                <li class="quan-item dyquan" :class="{active: item.active == true}" v-for="(item, index) in cardArr" :key="index" v-if="cardArr.length > 0"
+                                                    @click="dyQuanTab(index, item)">
+                                                    <div class="quan-item-bg">
+                                                        <p class="quan-border">
+                                                            <i class="el-icon-check"></i>
+                                                        </p>
+                                                        <span class="tx-x"></span>
+                                                        <p class="quan-title">
+                                                            <span class="quan-h1" v-text="item.money"></span>
+                                                            <span class="text" v-if="item.man == '0'">满&nbsp;任意金额</span>
+                                                            <span class="text" v-text="'满 '+item.man" v-else></span>
+                                                        </p>
+                                                        <p class="text">有效期
+                                                            <span v-text="item.time + '至' + item.time"></span>
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </el-tab-pane>
+                                    <!-- 金额抵用 -->
+                                    <div class="quan-footer" v-if="quanMoney != '0'">金额抵用
+                                        <span v-text="'￥'+quanMoney" class="color-ff6000"></span>
+                                        <span class="m-l-15" v-for="(item, index) in dymoney" :key="index" v-if="item.money != '' && index == 0" v-text="item.type + '1张，优惠'+item.money+'元'"></span>
+                                        <span class="m-l-15" v-for="(item, index) in dymoney" :key="index" v-if="dyQuanMoney != '0' && index > 0" v-text="item.type + dynumber +'张，优惠'+dyQuanMoney+'元'"></span>
+                                    </div>
+                                </el-tabs>
+                            </div>
+                        </div>
+                        <div ref="cardFixed" class="m-t-20 el-col el-col-xs-24 el-col-md-8 el-col-md-offset right-ab" style="top:0;">
+                            <div class="el-card box-card hong">
+                                <div class="el-card__header">
+                                    <div class="clearfix">
+                                        <span>结算明细</span>
+                                    </div>
+                                </div>
+                                <div class="el-card__body">
+                                    <div class="sp-details">
+                                        <div class="dl">
+                                            <div class="dt">预定货量</div>
+                                            <div class="dd" v-text="weight+unit"></div>
+                                        </div>
+                                        <div class="dl">
+                                            <div class="dt">预定价格</div>
+                                            <div class="dd money" v-text="">￥
+                                                <span v-text="money*weight">&nbsp;</span>
+                                            </div>
+                                        </div>
+                                        <div class="t-r">
+                                            <s>￥
+                                                <span v-text="par*weight">&nbsp;</span>
+                                            </s>
+                                        </div>
+                                        <div class="sp-yh">
+                                            <div class="sp-line" v-if="quanMoney != '0'"></div>
+                                            <div class="dl" v-if="quanMoney != '0'">
+                                                <div class="dt">下单优惠</div>
+                                                <div class="dd money">-￥
+                                                    <span v-text="quanMoney">&nbsp;</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="sp-line"></div>
+                                        <div class="dl zongji">
+                                            <div class="dt">费用总计</div>
+                                            <div class="dd money">￥
+                                                <span v-text="moneyAll">&nbsp;</span>
+                                            </div>
+                                        </div>
+                                        <div class="t-r tab">
+                                            <span class="tab-block">省</span>
+                                            <span class="tab-line">￥
+                                                <span v-text="selfMoney">&nbsp;</span>
+                                            </span>
+                                        </div>
+                                        <div class="sp-line"></div>
+                                        <div class="dl">
+                                            <div class="dt">支付方式</div>
+                                            <div class="dd zhifu">
+                                                <p>
+                                                    <el-radio v-model="radio" label="1">余额支付</el-radio>
+                                                </p>
+                                                <p>
+                                                    <el-radio v-model="radio" label="2">微信支付</el-radio>
+                                                </p>
+                                                <p>
+                                                    <el-radio v-model="radio" label="3">支付宝支付</el-radio>
+                                                </p>
+                                                <p>
+                                                    <el-radio v-model="radio" label="4">
+                                                        <el-select v-model="value4" size="small" placeholder="请选择" style="width:160px;">
+                                                            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                                                            </el-option>
+                                                        </el-select>
+                                                    </el-radio>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div style="text-align: center;margin-top:40px;">
+                                            <a href="PaySuccess.html " class="el-button sp-button-primary ">
+                                                <span>提交订单</span>
+                                            </a>
+                                        </div>
+                                        <div style="text-align: center">
+                                            <label role="checkbox">
+                                                <div class="icheckbox_square-green" style="position: relative; width: 14px; height: 14px;">
+                                                    <input type="checkbox" class="check">
+                                                    <i class="iconfont icon-gou" style="font-size: 14px;"></i>
+                                                </div>&nbsp;我已经阅读并接受
+                                                <a href="#" class="sp-a">&lt;&lt;FBA首选网服务协议&gt;&gt;</a>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+    <footer class="footer ">
+        <ul>
+            <li>
+                <a href="index.html ">首页</a>
+            </li>
+            <li>
+                <a href="index.html " class=" ">省钱方案</a>
+            </li>
+            <li>
+                <a href="index.html " class=" ">关于我们</a>
+            </li>
+            <li>
+                <a href="index.html " class=" ">联系我们</a>
+            </li>
+        </ul>
+        <div class="bei ">
+            <span>Copyright@2017 fba.top,All Rights Reserved</span>
+            <i>|</i>
+            <span>粤ICP备15039098号-2</span>
+        </div>
+    </footer>
+    </div>
+</body>
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script src="data/data.js" type="text/javascript"></script>
+<script src="js/sp-data.js" type="text/javascript"></script>
+<script src="js/sp-func.js" type="text/javascript"></script>
+<script src="js/vue.js "></script>
+<script src="js/element-ui.js "></script>
+<script>
+    setTimeout(function () {
+        $('#loding').css('display', 'block');
+    }, 200)
+    var name = SPFunc.getRequest();
+    new Vue({
+        el: '#app',
+        data: {
+            activeName2: 'first',
+            time: '',
+            count: '',
+            weight: '1',
+            money: '',
+            unit: '',
+            adress: ['美西'],
+            par: '',
+            radio: '1',
+            user: {
+                name: '',
+                phone: ''
+            },
+            quanArr: [{//优惠券
+                money: '400',
+                man: '15000',
+                time: '2018-03-31'
+            }, {
+                money: '100',
+                man: '5000',
+                time: '2018-03-31'
+            }],
+            cardArr: [],//抵用券数组
+            cardForm: {//抵用券添加
+                man: '0',
+                password: '',
+                money: '300',
+                time: '2018-04-01',
+            },
+            // isCardForm: false,
+            rules: {
+                password: [
+                    { required: true, message: '请输入密码', trigger: 'blur' },
+                    { min: 16, max: 16, message: '密码错误', trigger: 'blur' }
+                ]
+            },
+            //抵用金额
+            dymoney: [{
+                type: '优惠券',
+                money: ''
+            }, {
+                type: '抵用券',
+                money: ''
+            },],
+            saleData: [],
+            options: [{
+                value: '选项1',
+                label: '建设银行(6666)'
+            }, {
+                value: '选项2',
+                label: '中国银行(1688)'
+            }],
+            value4: '建设银行(6666)'
+        },
+        created() {
+            this.saleData = getData();
+            let url = location.search,
+                arr = [];
+            if (url.indexOf("data") != -1) {
+                var str = url.substr(1);
+                strs = str.split("=");
+                arr = strs[1].split(",");
+            }
+            this.time = arr[0];
+            this.weight = arr[1];
+        },
+        computed: {
+            //优惠券金额
+            quanMoney: function () {
+                let quanMoney = 0,
+                    money = 0;
+                this.quanArr.forEach((d, i) => {
+                    if (d.active) {
+                        quanMoney = parseInt(d.money);
+                    }
+                })
+                money = parseInt(this.dyQuanMoney);
+                return quanMoney + money;
+            },
+            //总价格
+            moneyAll: function () {
+                return parseInt(this.weight * this.money) - parseInt(this.quanMoney);
+            },
+            //省
+            selfMoney: function () {
+                return parseInt(this.par * this.weight - this.weight * this.money) + parseInt(this.quanMoney);
+            },
+            //优惠券是否可用
+            quanShow() {
+                let show = false;
+                this.quanArr.forEach((d, i) => {
+                    this.moneyAll > d.man && (show = true);
+                })
+                return show;
+            },
+            //抵用券数量
+            dynumber() {
+                let num = 0,
+                    arr = [];
+                this.cardArr.forEach((d, i) => {
+                    d.active && (arr.push(i));
+                })
+                num = arr.length;
+                return num;
+            },
+            //抵用券金额
+            dyQuanMoney() {
+                let num = 0;
+                this.cardArr.forEach((d, i) => {
+                    d.active && (num += parseInt(d.money));
+                })
+                return num;
+            }
+        },
+        methods: {
+            //抵用券提交/验证
+            submitForm(formName) {
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        this.cardArr.push({ man: '0', password: this.cardForm.password, money: this.cardForm.money, time: this.cardForm.time, active: true });
+                        this.cardForm.password = '';
+                        this.$message({
+                            message: '绑定成功',
+                            type: 'success'
+                        });
+                    } else {
+                        return false;
+                    }
+                });
+            },
+            inAnimate(obj, clas, time) {
+                time = time ? time : 1000;
+                obj.classList.add(clas);
+                setTimeout(function () {
+                    obj.classList.remove(clas);
+                }, time)
+            },
+            //选择优惠券
+            quanTab(index, item) {
+                this.quanArr.forEach((d, i) => {
+                    d.active && (d.active = false)
+                })
+                this.$set(this.quanArr[index], 'active', true)
+                this.dymoney[0].money = item.money;
+            },
+            //选择抵用券
+            dyQuanTab(index, item) {
+                item.active = !item.active;
+            },
+            getRequest() {
+                var url = location.search; //获取url中"?"符后的字串
+                if (url.indexOf("?") != -1) {
+                    var str = url.substr(1);
+                    console.log(str)
+                    strs = str.split("=");
+                    return strs[1].split(",");
+                }
+            }
+        },
+        watch: {
+            //监听时间
+            time: function () {
+                this.saleData.forEach((d, i) => {
+                    if (this.time == d.data) {
+                        this.money = d.money;
+                        this.count = d.count;
+                        this.par = d.par;
+                        this.unit = d.unit;
+                    }
+                })
+            },
+            //监听重量
+            weight: function () {
+                var _this = this;
+                if (_this.weight > _this.count) {
+                    _this.weight = _this.count;
+                    this.inAnimate(this.$refs.conIn, 'con-in');
+                }
+                if (/^-[0-9]+|^0$/.test(parseInt(this.weight))) {
+                    setTimeout(function () {
+                        _this.weight = 1;
+                    }, 1000)
+                }
+            }
+        },
+        mounted: function () {
+            this.$nextTick(function () {
+                var _this = this;
+                //当前页面登陆/退出
+                SPFunc.inLogin();
+
+                //手机端菜单点击
+                SPFunc.navClick();
+
+                $(document).on('scroll', () => {
+                    var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+                    if (scrollTop > 137) {
+                        let top = scrollTop - 137;
+                        _this.$refs.cardFixed.style.top = top + 'px';
+                    } else {
+                        _this.$refs.cardFixed.style.top = '0px';
+                    }
+                })
+                //产品详情切换
+                SPFunc.toggleTab($('.sp-option-tb > li'), 'click', $('.sp-document'));
+
+                //目的地选择
+                SPFunc.toggleTab($('.sp-adress li'), 'click');
+
+                $('.icheckbox_square-green').click(function () {
+                    $(this).find('.check').is(':checked') ? $(this).addClass('active') : $(this).removeClass('active');
+                })
+
+                //优惠券延迟显示
+                setTimeout(function () {
+                    $('.quan').show();
+                    $('.sp-yh').show();
+                }, 200)
+
+                //弹窗日历
+                SPFunc.clickClose('cutData', 'sp-data-box2', $('#sp-data-box2'));
+                let alartBox = $('#sp-data-box2');
+                $('#cutData').click(function () {
+                    if (!alartBox.hasClass('active')) {
+                        alartBox.addClass('active');
+                    }
+                })
+                var mySche = new Schedule({
+                    el: '#sp-data-box2',
+                    //date: '2018-9-20',
+                    saleData: this.saleData,
+                    isCurDate: false,
+                    clickCb: function (y, m, d) {
+                        m = m.toString()[1] ? m : "0" + m;
+                        d = d.toString()[1] ? d : "0" + d;
+                        let tm = y + '-' + m + '-' + d;
+                        _this.time = tm;
+                    }
+                });
+            })
+        }
+    })
+</script>
+
+</html>

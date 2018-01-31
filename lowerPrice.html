@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="css/theme-chalk/index.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/header-footer.css">
+    <link rel="stylesheet" type="text/css" href="icon-font/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="css/public.css">
+    <link rel="stylesheet" type="text/css" href="css/sp-data.css">
+    <link rel="stylesheet" type="text/css" href="css/lowerPrice.css">
+    <title>fba-top</title>
+</head>
+
+<body>
+    <div id="app">
+        <header class="sp-container">
+            <div class="header el-row">
+                <div class="icon el-col el-col-4">
+                    <i id="openNav" class="sp-menu-icon"></i>
+                </div>
+                <div class="logo el-col el-col-4">
+                    <a href="index.html">
+                        <img src="img/logo.png" alt="logo">
+                    </a>
+                </div>
+                <nav class="el-col el-col-14">
+                    <ul id="nav" class="nav">
+                        <li>
+                            <a href="index.html">首页</a>
+                        </li>
+                        <!-- <li><a href="program.html">省钱方案</a></li> -->
+                    </ul>
+                </nav>
+                <ul class="login el-col el-col-6">
+                    <li>
+                        <a href="login.html">登陆</a>
+                        <i class="hr">|</i>
+                        <a href="signin.html">注册</a>
+                    </li>
+                    <li>
+                        <div class="el-dropdown">
+                            <span class="el-dropdown-link el-dropdown-selfdefine " aria-haspopup="list" aria-controls="dropdown-menu-3401" role="button"
+                                tabindex="0">
+                                <i class="iconfont icon-name"></i>
+                                <span id="userName"></span>
+                            </span>
+                            <ul class="el-dropdown-menu el-popper" style=" z-index: 2002;">
+                                <li class="el-dropdown-menu__item">
+                                    <a href="userCenter.html">个人中心</a>
+                                </li>
+                                <li class="el-dropdown-menu__item">我的订单</li>
+                                <li class="el-dropdown-menu__item">我的钱包</li>
+                                <li class="el-dropdown-menu__item">商品管理</li>
+                                <li id="loginOut" class="el-dropdown-menu__item el-dropdown-menu__item--divided">
+                                    <i class="iconfont icon-tuichu"></i>&nbsp;&nbsp;退出</li>
+                                <div class="popper__arrow" style="left: 43.3828px;"></div>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <div class="sp-bg">
+            <div class="sp-container">
+                <main class="el-main sp-fff-bg">
+                    <div class="m-t-40 el-row sp-data-container" style="margin-left: -10px; margin-right: -10px;">
+                        <div class="el-col el-col-24 el-col-xs-24 el-col-md-10" style="padding-left: 10px; padding-right: 10px;">
+                            <img class="lg-img" src="img/img_bg.jpg" alt="img">
+                            <div id="sp-data-box" class="sp-data-box calendar">
+                                <div class="sp-loding">
+                                    <i class="el-icon-loading"></i>
+                                </div>
+                                <ul class="schedule-hd ul-box calendar-show">
+                                    <li class="check-mounth active"></li>
+                                </ul>
+                                <ul class="week-ul ul-box">
+                                    <li>日</li>
+                                    <li>一</li>
+                                    <li>二</li>
+                                    <li>三</li>
+                                    <li>四</li>
+                                    <li>五</li>
+                                    <li>六</li>
+                                </ul>
+                                <ul class="schedule-bd ul-box">
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                    <li class="noCurrent-month">
+                                        <div class="noCurrentDate dayStyle "></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="sp-details el-col el-col-24 el-col-xs-24 el-col-md-13 el-col-md-offset-1" style="padding-left: 10px; padding-right: 10px;">
+                            <h1>美西海派</h1>
+                            <div class="sp-jiage">
+                                <div class="left">
+                                    <div>
+                                        <small class="dt">价格</small>
+                                        <s>
+                                            <small>￥</small>
+                                            <span id="par-money">28</span>
+                                            <small id="par-money-unit">/kg</small>
+                                        </s>
+                                    </div>
+                                    <span>
+                                        <small class="dt">最低价</small>
+                                    </span>
+                                    <strong>
+                                        <small>￥</small>
+                                        <span id="min-money">23</span>
+                                        <small id="min-money-unit">/kg</small>
+                                    </strong>
+                                </div>
+                                <div class="right">
+                                    <p>累计评价</p>
+                                    <a href="#">999+</a>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="dt">下单立享</span>
+                                <span class="sp-tag">满15000减400</span>
+                                <span class="sp-tag">满5000减100</span>
+                            </div>
+                            <div>
+                                <span class="dt">运输时长</span>20~25天</div>
+                            <div>
+                                <span class="dt">目的地</span>
+                                <ul class="sp-adress">
+                                    <li class="active">美西</li>
+                                </ul>
+                            </div>
+                            <div class="sp-line"></div>
+                            <div class="p">
+                                <span class="dt">预约时间</span>
+                                <div class="el-date-editor el-input el-input--small el-input--prefix el-input--suffix">
+                                    <div id="cutData" class="el-input__inner" @click="openHTML($event.target)">选择日期</div>
+                                    <span class="el-input__prefix">
+                                        <i class="el-input__icon el-icon-date"></i>
+                                    </span>
+                                    <!-- 日期弹窗 -->
+                                    <!-- <div id='sp-data-box2' class="sp-data-box boxshaw"></div> -->
+                                </div>
+                            </div>
+                            <div class="el-input el-input--small el-input--suffix">
+                                <span class="dt">预定货量</span>
+                                <div class="sp-weight-box">
+                                    <input placeholder="输入重量" id="sp-weight" v-model="weight" type="number" min="1" style="width:120px;" class="el-input__inner">&nbsp;
+                                    <small id="weight-unit">kg</small>
+                                    <span class="sp-clas">已是最大值</span>
+                                </div>
+                            </div>
+                            <div>
+                                <a id="toConfirmOrder" href="javascript:;" class="el-button sp-button-primary" @click="openHTML($event.target)">立即下单</a>
+                            </div>
+                            <div class="sp-line"></div>
+                            <div class="sp-support">
+                                <p>该商品支持改期退款，具体条款请查看
+                                    <a href="#">&nbsp;预定须知</a>
+                                </p>
+                                <ul>
+                                    <li>
+                                        <img src="img/dijia.png" alt="全网低价">全网低价
+                                    </li>
+                                    <li>
+                                        <img src="img/tuigai.png" alt="支持退改">支持退改
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="p">
+                                <span class="dt">推荐标签</span>
+                                <ul class="sp-reviews-tag">
+                                    <li>
+                                        <span>服务态度好(1132)</span>
+                                    </li>
+                                    <li>
+                                        <span>服务态度好(1132)</span>
+                                    </li>
+                                    <li>
+                                        <span>服务态度好(1132)</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-t-40">
+                        <ul class="el-row sp-option-tb">
+                            <li class="el-col el-col-4 active">产品说明</li>
+                            <li class="el-col el-col-4">产品特点</li>
+                            <li class="el-col el-col-4">用户评价&nbsp;
+                                <a href="javascript:;">132</a>
+                            </li>
+                        </ul>
+                        <div class="sp-document active">
+                            <h3>计费方式</h3>
+                            <p>以1KG为单位进位；计费重量：整票的实际重量和整票的体积重量相比，取较大者计算(体积重量计算方式为:长*宽*高cm/6000=KG)</p>
+                            <div class="hr"></div>
+                            <h3>时效说明</h3>
+                            <p>以1KG为单位进位；计费重量：整票的实际重量和整票的体积重量相比，取较大者计算(体积重量计算方式为:长*宽*高cm/6000=KG)</p>
+                            <div class="hr"></div>
+                            <h3>限制物品</h3>
+                            <p>以1KG为单位进位；计费重量：整票的实际重量和整票的体积重量相比，取较大者计算(体积重量计算方式为:长*宽*高cm/6000=KG)</p>
+                            <div class="hr"></div>
+                            <h3>重量体积限制</h3>
+                            <p>以1KG为单位进位；计费重量：整票的实际重量和整票的体积重量相比，取较大者计算(体积重量计算方式为:长*宽*高cm/6000=KG)</p>
+                            <div class="hr"></div>
+                            <h3>税费说明</h3>
+                            <p>以1KG为单位进位；计费重量：整票的实际重量和整票的体积重量相比，取较大者计算(体积重量计算方式为:长*宽*高cm/6000=KG)</p>
+                            <div class="hr"></div>
+                            <h3>赔偿</h3>
+                            <p>以1KG为单位进位；计费重量：整票的实际重量和整票的体积重量相比，取较大者计算(体积重量计算方式为:长*宽*高cm/6000=KG)</p>
+                            <div class="hr"></div>
+                            <h3>其他</h3>
+                            <p>以1KG为单位进位；计费重量：整票的实际重量和整票的体积重量相比，取较大者计算(体积重量计算方式为:长*宽*高cm/6000=KG)</p>
+                        </div>
+                        <div class="sp-document">
+                            <img src="img/ted.png" alt="img">
+                        </div>
+                        <div class="sp-document">
+                            <div class="sp-reviews">
+                                <div class="sp-reviews-header">
+                                    <ul>
+                                        <li>
+                                            <h2>99%</h2>满意度</li>
+                                        <li>
+                                            <ul class="sp-reviews-tag">
+                                                <li>
+                                                    <span>服务态度好(1132)</span>
+                                                </li>
+                                                <li>
+                                                    <span>服务态度好(1132)</span>
+                                                </li>
+                                                <li>
+                                                    <span>服务态度好(1132)</span>
+                                                </li>
+                                                <li>
+                                                    <span>服务态度好(1132)</span>
+                                                </li>
+                                                <li>
+                                                    <span>服务态度好(1132)</span>
+                                                </li>
+                                                <li>
+                                                    <span>服务态度好(1132)</span>
+                                                </li>
+                                                <li>
+                                                    <span>服务态度好(1132)</span>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="sp-reviews-btn">
+                                    <ul>
+                                        <li class="active">全部(8888)</li>
+                                        <li>好评(888)</li>
+                                        <li>中评(8)</li>
+                                        <li>差评(8)</li>
+                                    </ul>
+                                </div>
+                                <div class="sp-reviews-content">
+                                    <div class="sr-box">
+                                        <div class="sr-header">1213178912用户
+                                            <small>2017-12-27</small>
+                                        </div>
+                                        <div class="sr-content">量限制：一票货最低标准为21KG，即整票货重量须在21KG及以量限制：一票货最低标准为21KG，即整票货重量须在21KG及以量限制：一票货最低标准为21KG，即整票货重量须在21KG及以量限制：一票货最低标准为21KG，即整票货重量须在21KG及以</div
+                                                class="">
+                                        </div>
+                                        <div class="sr-box">
+                                            <div class="sr-header">1213178912用户
+                                                <small>2017-12-27</small>
+                                            </div>
+                                            <div class="sr-content">量限制：一票货最低标准为21KG，即整票货重量须在21KG及以量限制：一票货最低标准为21KG，即整票货重量须在21KG及以量限制：一票货最低标准为21KG，即整票货重量须在21KG及以量限制：一票货最低标准为21KG，即整票货重量须在21KG及以</div
+                                                    class="">
+                                            </div>
+                                            <div class="sr-box">
+                                                <div class="sr-header">1213178912用户
+                                                    <small>2017-12-27</small>
+                                                </div>
+                                                <div class="sr-content">量限制：一票货最低标准为21KG，即整票货重量须在21KG及以量限制：一票货最低标准为21KG，即整票货重量须在21KG及以量限制：一票货最低标准为21KG，即整票货重量须在21KG及以量限制：一票货最低标准为21KG，即整票货重量须在21KG及以</div
+                                                        class="">
+                                                </div>
+                                            </div>
+                                            <el-pagination background layout="prev, pager, next" :total="total" :page-size="pageSize" :current-page="page" @current-change="currentPage"
+                                                class="t-a-r"></el-pagination>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                </main>
+                </div>
+                </div>
+                <footer class="footer">
+                    <ul>
+                        <li>
+                            <a href="index.html">首页</a>
+                        </li>
+                        <li>
+                            <a href="index.html" class="">省钱方案</a>
+                        </li>
+                        <li>
+                            <a href="index.html" class="">关于我们</a>
+                        </li>
+                        <li>
+                            <a href="index.html" class="">联系我们</a>
+                        </li>
+                    </ul>
+                    <div class="bei">
+                        <span>Copyright@2017 fba.top,All Rights Reserved</span>
+                        <i>|</i>
+                        <span>粤ICP备15039098号-2</span>
+                    </div>
+                </footer>
+            </div>
+</body>
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script src="js/sp-func.js" type="text/javascript"></script>
+<script src="data/data.js" type="text/javascript"></script>
+<script src="js/sp-data.js" type="text/javascript"></script>
+<script src="js/vue.js "></script>
+<script src="js/element-ui.js "></script>
+<script>
+    var name = SPFunc.getRequest();
+    new Vue({
+        el: '#app',
+        data: {
+            weight: '1',
+            count: '100000',
+            page: 1,
+            pageSize: 5,
+            total: 20,
+        },
+        created: function () { },
+        methods: {
+            //分页切换
+            currentPage(page) {
+                console.log(page)
+            },
+            openHTML(a) {
+                let _this = this;
+                if ($('#cutData').html() != '选择日期') {
+                    let data = [$('#cutData').html(), this.weight];
+                    $(a).attr('href', 'confirmOrder.html?data=' + data);
+                } else {
+                    _this.inAnimate($('.schedule-bd'), 'in', 1200);
+                }
+            },
+            inAnimate(obj, clas, time) {
+                time = time ? time : 1000;
+                obj.addClass(clas);
+                setTimeout(function () {
+                    obj.removeClass(clas);
+                }, time)
+            }
+        },
+        watch: {
+            weight: function () {
+                var _this = this;
+                if (parseInt(this.weight) > parseInt(this.count)) {
+                    this.inAnimate($('#sp-weight'), 'in');
+                    this.weight = this.count;
+                }
+                if (/^-[0-9]+|^0$/.test(parseInt(this.weight))) {
+                    setTimeout(function () {
+                        _this.weight = 1;
+                    }, 1000)
+                }
+            }
+        },
+        mounted: function () {
+            this.$nextTick(function () {
+                var _this = this;
+                //当前页面登陆/退出
+                SPFunc.inLogin();
+
+                //手机端菜单点击
+                SPFunc.navClick();
+
+                //产品详情切换
+                SPFunc.toggleTab($('.sp-option-tb > li'), 'click', $('.sp-document'));
+
+                //评论切换
+                SPFunc.toggleTab($('.sp-reviews-btn li'), 'click');
+
+                //目的地选择
+                SPFunc.toggleTab($('.sp-adress li'), 'click');
+
+                //资源日历
+                var mySchedule = new Schedule({
+                    el: '#sp-data-box',
+                    // date: '2018-1-12',
+                    saleData: getData(),
+                    clickCb: function (y, m, d, w) {
+                        _this.count = w;//剩余数量
+                        setTimeout(function () {
+                            if (_this.weight > w) {
+                                _this.inAnimate($('#sp-weight'), 'in');
+                                _this.weight = w;
+                            }
+                            m = m.toString()[1] ? m : "0" + m;
+                            d = d.toString()[1] ? d : "0" + d;
+                            $('#cutData').html(y + '-' + m + '-' + d);
+                            _this.inAnimate($('#cutData'), 'in');
+                        }, 800)
+
+                    }
+                });
+            })
+        }
+    })
+</script>
+
+</html>

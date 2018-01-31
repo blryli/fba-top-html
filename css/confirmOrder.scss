@@ -1,0 +1,140 @@
+.sp-tag {
+  padding: 10px 20px;
+  background-color: #f7f1ef;
+  border-radius: 4px;
+  i {
+    color: #ff6000;
+    font-size: 18px;
+    margin-right: 10px;
+  }
+}
+
+.hong {
+  border-top: 3px solid #ffbdbd;
+  .sp-details {
+    .dl {
+      overflow: hidden;
+      .dt {
+        float: left;
+      }
+      .dd {
+        float: right;
+      }
+      .money {
+        color: #fa5555;
+        font-weight: bold;
+      }
+    }
+    .zongji {
+      .dt {
+        font-weight: bold;
+        margin-top: 5px;
+      }
+      .money {
+        font-size: 24px;
+      }
+    }
+    .t-r {
+      text-align: right;
+      margin-top: 0;
+      font-size: 12px;
+      color: #888;
+    }
+    .tab {
+      margin-top: 4px;
+      span {
+        display: inline-block;
+        padding: 0 2px;
+      }
+      .tab-block {
+        background-color: #fa5555;
+        border: 1px solid #fa5555;
+        color: #fff;
+        margin-right: -3px;
+      }
+      .tab-line {
+        border-color: #fa5555;
+        color: #fa5555;
+        border-top: 1px solid;
+        border-right: 1px solid;
+        border-bottom: 1px solid;
+      }
+    }
+  }
+}
+//quan
+.quan-footer {
+  margin-top: 20px;
+  background-color: #f5f5f5;
+  color: #666;
+  padding: 6px 10px;
+  font-size: 12px;
+}
+//礼品卡
+.el-input__inner {
+  border-radius: 0;
+}
+.sp-details {
+  .d {
+    width: 200px;
+  }
+}
+
+.right-ab {
+  position: absolute;
+  right: 0;
+}
+
+.hong .el-card__header {
+  span {
+    font-size: 16px;
+    color: #ff6000;
+  }
+}
+
+.dd.zhifu {
+  margin-right: 20px;
+  p {
+    margin-bottom: 10px;
+  }
+}
+
+//布局间距
+.el-row {
+  margin: 0 -10px;
+  .el-col {
+    padding: 0 10px;
+  }
+}
+
+//动画
+.con-in {
+  animation: consan 0.6s;
+}
+
+@keyframes consan {
+  0% {
+    color: #f65454;
+  }
+  15% {
+    color: #f65454;
+  }
+  25% {
+    color: #d8dce5;
+  }
+  50% {
+    color: #f65454;
+  }
+  65% {
+    color: #f65454;
+  }
+  75% {
+    color: #d8dce5;
+  }
+  85% {
+    color: #f65454;
+  }
+  100% {
+    color: #f65454;
+  }
+}

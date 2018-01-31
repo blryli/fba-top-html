@@ -1,0 +1,671 @@
+.m-b-20 {
+  margin-bottom: 20px;
+}
+
+.m-l-15 {
+  margin-left: 15px;
+}
+.m-t-20 {
+  margin-top: 20px;
+}
+.m-t-10 {
+  margin-top: 10px;
+}
+
+.m-t-30 {
+  margin-top: 30px;
+}
+.m-b-10 {
+  margin-bottom: 10px;
+}
+
+.sp-bg {
+  background-color: #f2f2f2;
+  padding: 20px 0 40px;
+  border-top: 1px solid #ddd;
+  min-height: 93vh;
+  min-height: calc(100vh - 208px);
+  min-height: -webkit-calc(100vh - 208px);
+  min-height: -moz-calc(100vh - 208px);
+}
+
+.sp-fff-bg {
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+
+.sp-input-suffix {
+  display: inline-block;
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+
+.sp-input-suffix .el-input {
+  width: 180px;
+}
+
+.sp-input-suffix.size .el-input {
+  width: 120px;
+}
+
+.el-input__inner {
+  color: #333;
+}
+
+.color-ff6000 {
+  color: #ff6000;
+}
+
+.sp-container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+//文本对齐
+.t-a-c {
+  text-align: center;
+}
+
+.t-a-l {
+  text-align: left;
+}
+
+.t-a-l-r {
+  text-align: center;
+}
+
+.t-a-r {
+  text-align: right;
+}
+
+.text-right {
+  text-align: right;
+}
+
+//table
+.sp-table {
+  font-size: 14px;
+  color: #606266;
+  width: 100%;
+  strong {
+    color: #f65454;
+  }
+  thead {
+    color: #909399;
+    tr {
+      th {
+        border-bottom: 1px solid #ebeef5;
+        padding: 12px;
+      }
+    }
+  }
+  tbody tr {
+    td {
+      border-bottom: 1px solid #ebeef5;
+      padding: 12px;
+    }
+    &.all {
+      background-color: #f9f7f1;
+      td {
+        border-bottom: 0;
+      }
+    }
+  }
+}
+
+/*checkbox*/
+
+.title {
+  font-size: 18px;
+  color: #555;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.title.border {
+  border-left: 3px solid #53a6d9;
+  padding-left: 12px;
+}
+
+.title span {
+  font-size: 15px;
+  display: inline-block;
+  margin-left: 20px;
+  vertical-align: bottom;
+}
+
+.sp-content + .sp-content {
+  margin-top: 30px;
+}
+
+.sp-btn {
+  margin: 30px 0 10px;
+}
+
+.icheckbox_square-green,
+.iradio_square-green {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #aaa;
+  border-radius: 2px;
+}
+
+.icheckbox_square-green:hover,
+.iradio_square-green:hover {
+  border-color: #ff6000;
+}
+
+.icheckbox_square-green.active,
+.iradio_square-green.active {
+  border-color: #ff6000;
+  background-color: #ff6000;
+}
+
+.icheckbox_square-green .check,
+.iradio_square-green .check {
+  position: absolute;
+  z-index: 10;
+  opacity: 0;
+  top: 0%;
+  left: 0%;
+  cursor: pointer;
+  margin-top: 0;
+}
+
+.icheckbox_square-green .iconfont {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  color: #fff;
+}
+
+.d-n {
+  display: none;
+}
+
+.d-n.active {
+  display: block;
+}
+
+.m-b-40 {
+  margin-bottom: 40px;
+}
+
+.m-t-40 {
+  margin-top: 40px;
+}
+
+.tri-up {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 20px solid;
+}
+
+.tri-left {
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 20px solid;
+}
+
+.tri-right {
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-right: 20px solid;
+}
+
+.tri-down {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid;
+}
+
+.sp-container .el-main {
+  overflow: visible;
+}
+
+/*按钮*/
+
+.el-button {
+  border-radius: 0;
+}
+
+.el-button--primary {
+  color: #fff;
+  background-color: #fc7019;
+  border-color: #fc7019;
+  &:hover,
+  &:focus,
+  &:active {
+    color: #fff;
+    background-color: #ff6000;
+    border-color: #ff6000;
+  }
+}
+
+.el-button--default {
+  &:hover,
+  &:focus,
+  &:active {
+    color: #ff6000;
+    background-color: #fff;
+    border-color: #ff6000;
+  }
+}
+
+.sp-button-primary {
+  color: #fff;
+  background-color: #f40;
+  border-color: #f40;
+  border-radius: 0;
+  font-size: 18px;
+  width: 150px;
+  &:hover,
+  &:focus,
+  &:active {
+    color: #fff;
+    background-color: rgb(238, 63, 0);
+    border-color: rgb(238, 63, 0);
+  }
+}
+
+//sp-tag
+.sp-tag {
+  color: #fc8860;
+  border: 1px solid #fc8860;
+  padding: 2px 4px;
+  border-radius: 0;
+  cursor: default;
+  & + .sp-tag {
+    margin-left: 8px;
+  }
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: transparent;
+  }
+}
+
+//虚线
+.sp-line {
+  height: 0;
+  overflow: hidden;
+  border-bottom: 1px dotted #dfdfdf;
+  margin-bottom: 15px;
+}
+
+//饿了么卡片
+.el-card {
+  border-radius: 0;
+  border: 0;
+  box-shadow: 0 1px 3px rgba(22, 64, 99, 0.1);
+  .el-card__header {
+    padding: 18px 0;
+    margin: 0 20px;
+    border-bottom-color: #ddd;
+    .clearfix > span {
+      font-size: 16px;
+      font-weight: bold;
+      color: #666;
+    }
+  }
+  .el-tabs--border-card {
+    box-shadow: 0 1px 3px rgba(22, 64, 99, 0);
+  }
+}
+
+.el-card,
+.el-message {
+  overflow: visible;
+}
+
+//饿了么alert
+.el-alert {
+  a {
+    color: rgb(86, 128, 190);
+    &:hover {
+      color: #ff6000;
+    }
+  }
+}
+
+//tooltip
+.icon-wenhao {
+  position: relative;
+  display: block;
+  .el-tooltip__popper {
+    min-width: 100px;
+    left: 24px;
+    top: -16px;
+  }
+}
+
+.el-alert--warning.sp {
+  background-color: #fffaf1;
+  border: 1px solid #fdc07b;
+  color: #333;
+  border-radius: 0;
+  .el-icon-warning {
+    color: #fdb460;
+  }
+}
+
+//
+.f-c {
+  overflow: hidden;
+}
+.f-r {
+  float: right;
+}
+
+.f-l {
+  float: left;
+}
+
+//饿了么
+.el-form {
+  .el-form-item__content {
+    width: 80%;
+  }
+}
+
+//错误信息
+.erro-info {
+  position: absolute;
+  .erro-info-text {
+    width: 100%;
+    height: 32px;
+    color: #f40;
+  }
+}
+
+//文本
+.sp-details {
+  .dt {
+    color: #888;
+    width: 60px;
+    margin-right: 24px;
+    text-align: right;
+    display: inline-block;
+    font-size: 14px;
+  }
+}
+.small {
+  color: #888;
+  font-size: 12px;
+}
+.el-input-group__append,
+.el-input-group__prepend {
+  border-radius: 0;
+  padding: 0 10px;
+}
+//分页按钮
+.el-pagination.is-background .el-pager li.active {
+  background-color: #ff6000;
+  color: #fff;
+}
+.el-pagination.is-background .btn-next,
+.el-pagination.is-background .btn-prev,
+.el-pagination.is-background .el-pager li {
+  margin: 0 5px;
+  background-color: #f4f4f5;
+  color: #606266;
+  min-width: 30px;
+  border-radius: 0;
+  &:hover {
+    color: #ff6000;
+  }
+}
+
+//评论服务印象
+.sp-reviews-tag {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: middle;
+  li {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    span {
+      padding: 2px 6px;
+      color: #888;
+      border: 1px solid #ddd;
+      border-radius: 2px;
+      display: block;
+    }
+  }
+}
+
+//表单
+.el-form {
+  .el-form-item__label {
+    color: #888;
+  }
+  .el-input__inner,
+  .el-textarea__inner {
+    border-radius: 0;
+  }
+}
+
+// 上传图片
+.file-input {
+  .file-new {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    line-height: 65px;
+    text-align: center;
+    vertical-align: bottom;
+    border: 1px dashed #ccc;
+    background-color: #fbfdff;
+    box-sizing: border-box;
+    .el-icon-plus {
+      position: absolute;
+      top: 50%;
+      margin-top: -10px;
+      left: 50%;
+      margin-left: -10px;
+      font-size: 20px;
+      color: #666;
+    }
+    .file-original {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 50px;
+      height: 50px;
+      opacity: 0;
+      filter: alpha(opacity=0);
+      cursor: pointer;
+    }
+  }
+  .file-original {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer;
+  }
+  .file-content {
+    display: inline-block;
+    min-height: 50px;
+    margin-left: 15px;
+    vertical-align: bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    img {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+//优惠券
+.page-contrnt {
+  .quan {
+    display: block;
+  }
+}
+.quan {
+  overflow: hidden;
+  display: none;
+  .quan-img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 0;
+  }
+  .active {
+    .quan-img {
+      display: block;
+    }
+  }
+  .quan-item {
+    position: relative;
+    float: left;
+    width: 200px;
+    cursor: pointer;
+    margin-right: 10px;
+    &.active {
+      .quan-border {
+        border-color: #ff0000;
+        z-index: 3;
+        .el-icon-check {
+          display: block;
+        }
+      }
+    }
+  }
+  .dyquan {
+    .quan-item-bg {
+      background-color: #fc7019;
+    }
+  }
+  .tx-x {
+    position: relative;
+    z-index: 1;
+    display: block;
+    background: url(../img/tx.png) repeat-x left top #fff;
+    height: 3px;
+  }
+  .quan-item-bg {
+    background-color: #f67272;
+  }
+  .quan-border {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: 3px solid #f67272;
+    .el-icon-check {
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding: 6px;
+      background-color: #ff0000;
+      color: #fff;
+      font-weight: bold;
+      display: none;
+    }
+  }
+  .quan-title {
+    position: relative;
+    color: #fff;
+    padding-top: 6px;
+    .quan-h1 {
+      padding-left: 40px;
+      font-size: 36px;
+    }
+    &::before {
+      content: "￥";
+      position: absolute;
+      left: 20px;
+      top: 10px;
+      color: #fff;
+      font-size: 24px;
+    }
+  }
+  .text {
+    padding-left: 10px;
+    font-size: 12px;
+    color: #fff;
+    padding: 10px 10px;
+  }
+}
+//个人中心优惠券
+.quan {
+  &.user {
+    position: relative;
+    li {
+      &::before {
+        content: "去使用";
+        position: absolute;
+        right: 0;
+        bottom: -30px;
+        background-color: #333;
+        color: #fff;
+        line-height: 30px;
+        width: 100%;
+        text-align: center;
+        transition: all 0.3s;
+        opacity: 0.8;
+      }
+      &:hover {
+        &::before {
+          bottom: 0;
+        }
+      }
+    }
+  }
+}
+.sp-yh {
+  //优惠券隐藏
+  display: none;
+}
+#loding {
+  display: none;
+}
+@media (min-width: 768px) {
+  .sp-container {
+    width: 750px;
+    padding: 0;
+  }
+  .t-a-l-r {
+    text-align: left;
+  }
+  .file-input {
+    display: inline-block;
+  }
+}
+
+@media (min-width: 992px) {
+  .sp-container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .sp-container {
+    width: 1200px;
+  }
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="css/theme-chalk/index.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/header-footer.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/public.css">
+    <link rel="stylesheet" type="text/css" href="css/placeorder.css">
+    <link rel="stylesheet" type="text/css" href="css/pay-success.css">
+    <title>fba-top</title>
+</head>
+
+<body>
+    <header class="sp-container">
+        <div class="header el-row">
+            <div class="icon el-col el-col-4"><i id="openNav" class="sp-menu-icon"></i></div>
+            <div class="logo el-col el-col-4">
+                <a href="index.html"><img src="img/logo.png" alt="logo"></a>
+            </div>
+            <nav class="el-col el-col-14">
+                <ul id="nav" class="nav">
+                    <li><a href="index.html">首页</a></li>
+                    <!-- <li><a href="program.html">省钱方案</a></li> -->
+                </ul>
+            </nav>
+            <ul class="login el-col el-col-6">
+                <li>
+                    <a href="login.html">登陆</a> <i class="hr">|</i>
+                    <a href="signin.html">注册</a>
+                </li>
+                <li>
+                    <div class="el-dropdown">
+                        <span class="el-dropdown-link el-dropdown-selfdefine " aria-haspopup="list" aria-controls="dropdown-menu-3401" role="button" tabindex="0">
+                            <i class="iconfont icon-name"></i>
+                            <span id="userName"></span>
+                        </span>
+                        <ul class="el-dropdown-menu el-popper" style=" z-index: 2002;">
+                            <li class="el-dropdown-menu__item">个人中心</li>
+                            <li class="el-dropdown-menu__item">我的订单</li>
+                            <li class="el-dropdown-menu__item">我的钱包</li>
+                            <li class="el-dropdown-menu__item">商品管理</li>
+                            <li id="loginOut" class="el-dropdown-menu__item el-dropdown-menu__item--divided"><i class="iconfont icon-tuichu"></i>&nbsp;&nbsp;退出</li>
+                            <div class="popper__arrow" style="left: 43.3828px;"></div>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="sp-bg">
+        <div class="main">
+            <div class="sp-container">
+                <!-- 收货人信息 -->
+                <div class="receiver-container el-card">
+                    <div class="el-card__header">
+                        <div class="clearfix">
+                            <span>处理结果</span>
+                        </div>
+                    </div>
+                    <div class="main-content">
+                        <div class="order-box">
+                            <div class="order-icon">
+                                <i class="el-icon-document"></i>
+                            </div>
+                            <div class="order-list">
+                                <div class="title-wrapper">
+                                    <h1>资料提交成功！</h1>
+                                    <small>感谢使用FBA首选物流，如有任何问题请联系客服</small>
+                                </div>
+                                <ul class="sp-details">
+                                    <li>
+                                        <span class="dt">产品名称：</span>
+                                        <span class="text">美国FBA空派（美西）</span>
+                                    </li>
+                                    <li>
+                                        <span class="dt">货物箱数：</span>
+                                        <span class="text">100</span>
+                                    </li>
+                                    <li>
+                                        <span class="dt">总质量（KG）：</span>
+                                        <span class="text">600</span>
+                                    </li>
+                                    <li>
+                                        <span class="dt">总体积（CM3）</span>
+                                        <span class="text">10000</span>
+                                    </li>
+                                    <li>
+                                        <span class="dt">商品信息：</span>
+                                        <ul class="text">
+                                            <li>黑色签字笔（500支）</li>
+                                            <li>笔记本（300本）</li>
+                                            <li>铅笔（300支）</li>
+                                            <li>书包（1000个）</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <!-- <ul class="sp-pay-gzh el-row">
+                                    <li class="el-col el-col-xs-24 el-col-sm-6 t-a-l-r"><img src="img/wx-gzh.png" alt=""></li>
+                                    <li class="el-col el-col-xs-24 el-col-sm-18"><span>打开手机微信【扫一扫】，关注FBA首选公众号送100元代金券；公众号实时推送您的物流运输信息，让您随时随地获取货物轨迹信息！</span></li>
+                                </ul> -->
+                                <div class="button-group">
+                                    <a href="index.html" class="el-button el-button--medium el-button--primary m-t-20"><span>返回首页</span></a>
+                                </div>
+                                <p class="go">
+                                    本页面将在&nbsp;<i id="spareTime">10</i>&nbsp;秒后跳转到我的订单，或点击<a href="placeorder.html">手动跳转</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <ul>
+            <li><a href="index.html ">首页</a></li>
+            <li><a href="index.html " class=" ">省钱方案</a></li>
+            <li><a href="index.html " class=" ">关于我们</a></li>
+            <li><a href="index.html " class=" ">联系我们</a></li>
+        </ul>
+        <div class="bei "><span>Copyright@2017 fba.top,All Rights Reserved</span> <i>|</i> <span>粤ICP备15039098号-2</span></div>
+    </footer>
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/sp-func.js" type="text/javascript"></script>
+    <script>
+        var name = SPFunc.getRequest();
+        $(function() {
+            //当前页面登陆/退出
+            SPFunc.inLogin();
+
+            //手机端菜单点击
+            SPFunc.navClick();
+
+            // 10s后页面自动跳转
+            // setInterval(autoGo, 1000)
+
+            function autoGo() {
+                var time = parseInt($('#spareTime').text())
+                time--
+                if (time <= 0) {
+                    window.location.href = "placeorder.html"
+                } else {
+                    $('#spareTime').text(time)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

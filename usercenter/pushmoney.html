@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../css/theme-chalk/index.css">
+    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../css/header-footer.css">
+    <link rel="stylesheet" type="text/css" href="../icon-font/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="../css/public.css">
+    <link rel="stylesheet" type="text/css" href="../css/usercenter.css">
+    <title>fba-top</title>
+</head>
+
+<body>
+    <div id="app">
+        <header class="sp-container">
+            <div class="header el-row">
+                <div class="icon el-col el-col-4">
+                    <i id="openNav" class="sp-menu-icon"></i>
+                </div>
+                <div class="logo el-col el-col-4">
+                    <a href="../index.html">
+                        <img src="../img/logo.png" alt="logo">
+                    </a>
+                </div>
+                <nav class="el-col el-col-14">
+                    <ul id="nav" class="nav">
+                        <li>
+                            <a href="../index.html">首页</a>
+                        </li>
+                        <!-- <li><a href="program.html">省钱方案</a></li> -->
+                    </ul>
+                </nav>
+                <ul class="login el-col el-col-6">
+                    <li>
+                        <a href="login.html">登陆</a>
+                        <i class="hr">|</i>
+                        <a href="signin.html">注册</a>
+                    </li>
+                    <li>
+                        <div class="el-dropdown">
+                            <span class="el-dropdown-link el-dropdown-selfdefine " aria-haspopup="list" aria-controls="dropdown-menu-3401" role="button"
+                                tabindex="0">
+                                <i class="iconfont icon-name"></i>
+                                <span id="userName"></span>
+                            </span>
+                            <ul class="el-dropdown-menu el-popper" style=" z-index: 2002;">
+                                <li class="el-dropdown-menu__item">个人中心</li>
+                                <li class="el-dropdown-menu__item">我的订单</li>
+                                <li class="el-dropdown-menu__item">我的钱包</li>
+                                <li class="el-dropdown-menu__item">商品管理</li>
+                                <li id="loginOut" class="el-dropdown-menu__item el-dropdown-menu__item--divided">
+                                    <i class="iconfont icon-tuichu"></i>&nbsp;&nbsp;退出</li>
+                                <div class="popper__arrow" style="left: 43.3828px;"></div>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <main class="sp-bg">
+            <div class="sp-container">
+                <div class="side-nav">
+                    <ul class="el-card">
+                        <li id="userCenter">
+                            <a href="usercenter.html">个人中心</a>
+                        </li>
+                        <li id="userOrder">
+                            <a href="userorder.html">我的订单</a>
+                        </li>
+                        <li id="userWallet" class="active">
+                            <a href="usermoney.html">我的钱包</a>
+                        </li>
+                        <li id="userCoupons">
+                            <a href="coupon.html">优惠券</a>
+                        </li>
+                        <li id="userAddress">
+                            <a href="addressmanage.html">地址管理</a>
+                        </li>
+                        <li id="userSp">
+                            <a href="goodsmanage.html">商品管理</a>
+                        </li>
+                        <li id="userChange">
+                            <a href="changepassword.html">修改密码</a>
+                        </li>
+                        <li id="userInfo">
+                            <a href="userdata.html">账户信息</a>
+                        </li>
+                    </ul>
+                </div>
+                <el-card class="page-contrnt">
+                    <div slot="header" class="clearfix">
+                        <span>钱包充值</span>
+                    </div>
+                    <div class="el-row">
+                        <div class="box-card el-col el-col-24">
+                            <el-form label-width="70px" size="mini">
+                                <el-form-item label="充值金额">
+                                    <div style="width: 180px;">
+                                        <el-input placeholder="充值金额">
+                                            <template slot="prepend">￥</template>
+                                        </el-input>
+                                    </div>
+                                </el-form-item>
+                                <el-form-item label="支付方式">
+                                    <el-radio v-model="radio" label="1">微信</el-radio>
+                                    <el-radio v-model="radio" label="2">支付宝</el-radio>
+                                </el-form-item>
+                                </el-form-item>
+                                <el-form-item class=" m-t-30">
+                                    <a href="javascript:history.back(-1)" class="el-button el-button--small el-button--default">
+                                        <span>返 回</span>
+                                    </a>
+                                    <a href="usermoney.html" class="el-button el-button--small el-button--primary">
+                                        <span>充 值</span>
+                                    </a>
+                                </el-form-item>
+                            </el-form>
+                        </div>
+                    </div>
+                </el-card>
+            </div>
+        </main>
+    </div>
+    <footer class="footer ">
+        <ul>
+            <li>
+                <a href="index.html ">首页</a>
+            </li>
+            <li>
+                <a href="index.html " class=" ">省钱方案</a>
+            </li>
+            <li>
+                <a href="index.html " class=" ">关于我们</a>
+            </li>
+            <li>
+                <a href="index.html " class=" ">联系我们</a>
+            </li>
+        </ul>
+        <div class="bei ">
+            <span>Copyright@2017 fba.top,All Rights Reserved</span>
+            <i>|</i>
+            <span>粤ICP备15039098号-2</span>
+        </div>
+    </footer>
+    </div>
+</body>
+<script src="../js/jquery.min.js" type="text/javascript"></script>
+<script src="../js/sp-func.js" type="text/javascript"></script>
+<script src="../js/vue.js "></script>
+<script src="../js/element-ui.js "></script>
+<script>
+    setTimeout(function () {
+        $('.page-contrnt').css('display', 'block');
+    }, 200)
+    var name = SPFunc.getRequest();
+    new Vue({
+        el: '#app',
+        data: {
+            radio: '',
+        },
+        created() {
+
+        },
+        methods: {
+
+        },
+        watch: {
+
+        },
+        computed: {
+
+        },
+        mounted: function () {
+            this.$nextTick(function () {
+                //当前页面登陆/退出
+                SPFunc.inLogin();
+
+                //跳转到个人中心
+                // SPFunc.cutHtml($('#userCenter'));
+
+                //侧边栏切换
+                SPFunc.toggleTab($('.side-nav li'), 'click');
+            })
+        }
+    })
+</script>
+
+</html>

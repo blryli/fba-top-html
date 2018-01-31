@@ -1,0 +1,274 @@
+@charset "UTF-8";
+.sp-details {
+  h1 {
+    font-size: 18px;
+  }
+  > div {
+    margin-top: 20px;
+    color: #333;
+  }
+  .sp-jiage {
+    background-color: #faf4f0;
+    padding: 10px 0;
+    overflow: hidden;
+    .left {
+      float: left;
+      > span {
+        margin-top: 20px;
+        display: inline-block;
+      }
+    }
+    small {
+      font-size: 14px;
+    }
+    strong {
+      font-size: 24px;
+      color: #f65454;
+    }
+    .right {
+      float: right;
+      border-left: 1px solid #ddd;
+      padding: 0 10px;
+      height: 40px;
+      p {
+        color: #888;
+        font-size: 12px;
+      }
+      a {
+        margin-top: 4px;
+        display: inline-block;
+      }
+    }
+  }
+  .lt {
+    text-decoration: line-through;
+    color: #888;
+    margin-left: 15px;
+  }
+  .sp-adress {
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+    li {
+      float: left;
+      border: 1px solid #ddd;
+      padding: 4px 6px;
+      margin-right: 8px;
+      cursor: pointer;
+      &:hover {
+        border-color: #fa5555;
+      }
+      &.active {
+        border-color: #fa5555;
+      }
+    }
+  }
+  .el-input__inner {
+    border-radius: 0;
+  }
+  .sp-weight-box {
+    position: relative;
+    display: inline-block;
+    .sp-clas {
+      position: absolute;
+      right: 22px;
+      top: 8px;
+      font-size: 12px;
+      color: #f65454;
+      display: none;
+    }
+    .in + .sp-clas {
+      display: block;
+    }
+  }
+}
+
+.sp-data-container {
+  .lg-img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+}
+
+//支持退改
+.sp-details > .sp-support {
+  margin-top: 30px;
+  p {
+    color: #888;
+  }
+  > ul {
+    overflow: hidden;
+    margin: 20px 0;
+    > li {
+      float: left;
+      margin-right: 20px;
+      img {
+        width: 40px;
+        height: 40px;
+        background-color: #ddd;
+        color: #fff;
+        display: inline-block;
+        margin-right: 10px;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+.m-l-10 {
+  margin-left: 10px;
+  color: #3390ca;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.sp-document {
+  padding: 20px 10px;
+  display: none;
+}
+
+.sp-document.active {
+  display: block;
+}
+
+.sp-document h3 {
+  margin: 20px 0 10px;
+}
+
+.sp-text {
+  margin-top: 30px;
+}
+
+.sp-text p {
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.sp-document .hr {
+  height: 1px;
+  background-color: #ddd;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.hr-lg {
+  border-bottom: 1px solid #ccc;
+  margin: 70px 0 30px;
+  position: relative;
+}
+
+.hr-lg h2 {
+  font-weight: normal;
+  position: absolute;
+  top: -15px;
+  width: 180px;
+  left: 50%;
+  margin-left: -90px;
+  text-align: center;
+  background: #f5f5f5;
+}
+
+//满意度
+.sp-reviews-header {
+  padding: 20px 0;
+  & > ul {
+    overflow: hidden;
+    & > li {
+      float: left;
+      width: 80%;
+      &:first-child {
+        width: 20%;
+        max-width: 160px;
+        text-align: center;
+      }
+      & > h2 {
+        font-size: 30px;
+        color: #fa5555;
+      }
+    }
+  }
+}
+
+//评论类型
+.sp-reviews-btn {
+  padding: 6px 12px;
+  background-color: #f5f5f5;
+  border: 1px solid #f2f2f2;
+  & > ul {
+    overflow: hidden;
+    padding: 0 10px;
+    & > li {
+      float: left;
+      margin-right: 30px;
+      cursor: pointer;
+      &.active {
+        color: #fa5555;
+        float: left;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+//评论内容
+.sp-reviews-content {
+  padding: 0 10px;
+  margin-top: 20px;
+  .sr-box {
+    padding: 20px 0;
+    border-bottom: 1px solid #ddd;
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+  .sr-header {
+    position: relative;
+    margin-bottom: 12px;
+    font-weight: bold;
+    small {
+      position: absolute;
+      right: 0;
+      font-weight: normal;
+      font-size: 12px;
+      color: #666;
+    }
+    .sr-content {
+      font-size: 13px;
+      line-height: 1.3rem;
+    }
+  }
+}
+
+//动画
+.in {
+  animation: san 0.6s;
+}
+
+@keyframes san {
+  0% {
+    border: 1px solid #f65454;
+  }
+  15% {
+    border: 1px solid #f65454;
+  }
+  25% {
+    border: 1px solid #d8dce5;
+  }
+  50% {
+    border: 1px solid #f65454;
+  }
+  65% {
+    border: 1px solid #f65454;
+  }
+  75% {
+    border: 1px solid #d8dce5;
+  }
+  85% {
+    border: 1px solid #f65454;
+  }
+  100% {
+    border: 1px solid #f65454;
+  }
+}

@@ -1,0 +1,100 @@
+.login-box {
+    width: 100%;
+    width: 340px;
+    background-color: #fff;
+    padding: 20px 0 24px;
+    margin: 60px 5px 5px;
+    float: right;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .4);
+}
+
+.login-title {
+    overflow: hidden;
+    padding: 0 30px;
+    h2 {
+        font-size: 18px;
+        color: #ff6000;
+        font-weight: normal;
+    }
+    a {
+        font-size: 18px;
+        color: #666;
+        &:first-child {
+            border-right: 1px solid #aaa;
+            padding-right: 40px;
+            margin-right: 40px;
+            margin-left: 15px;
+        }
+        &:hover,
+        &.active {
+            color: #ff6000;
+        }
+    }
+}
+
+.login-content {
+    padding: 0 30px;
+    margin-top: 10px;
+    display: none;
+    &.active {
+        display: block;
+    }
+    .el-tag {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    .el-input,
+    label {
+        margin-bottom: 20px;
+    }
+    label {
+        display: inline-block;
+    }
+    .el-button {
+        margin-top: 10px;
+        width: 100%;
+    }
+    .el-input-group__append {
+        min-width: 80px;
+        background-color: #ff8539;
+        border-color: #ff8539;
+        color: #fff;
+        cursor: pointer;
+        text-align: center;
+        &.cut {
+            background-color: #d8dce5;
+            border-color: #ccc;
+            color: #666;
+        }
+    }
+}
+
+.el-tag--danger {
+    opacity: 0;
+    height: 24px;
+    line-height: 20px;
+    margin-top: 20px;
+    width: 100%;
+    &.in {
+        opacity: 1;
+    }
+    .el-icon-remove {
+        &::before {
+            margin-right: 6px;
+        }
+    }
+}
+
+.login-bg {
+    height: 500px;
+    overflow: hidden;
+    background: url(../img/login.png) no-repeat center center;
+}
+
+.sp-container {
+    overflow: hidden;
+}
+
+.el-input__icon {
+    margin-left: 4px;
+}

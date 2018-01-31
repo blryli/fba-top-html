@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="css/theme-chalk/index.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/header-footer.css">
+    <link rel="stylesheet" type="text/css" href="css/placeorder.css">
+    <link rel="stylesheet" type="text/css" href="icon-font/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="css/public.css">
+    <title>fba-top</title>
+</head>
+
+<body>
+    <div id="app">
+        <header class="sp-container">
+            <div class="header el-row">
+                <div class="icon el-col el-col-4">
+                    <i id="openNav" class="sp-menu-icon"></i>
+                </div>
+                <div class="logo el-col el-col-4">
+                    <a href="index.html">
+                        <img src="img/logo.png" alt="logo">
+                    </a>
+                </div>
+                <nav class="el-col el-col-14">
+                    <ul id="nav" class="nav">
+                        <li>
+                            <a href="index.html">首页</a>
+                        </li>
+                        <!-- <li><a href="program.html">省钱方案</a></li> -->
+                    </ul>
+                </nav>
+                <ul class="login el-col el-col-6">
+                    <li>
+                        <a href="login.html">登陆</a>
+                        <i class="hr">|</i>
+                        <a href="signin.html">注册</a>
+                    </li>
+                    <li>
+                        <div class="el-dropdown">
+                            <span class="el-dropdown-link el-dropdown-selfdefine " aria-haspopup="list" aria-controls="dropdown-menu-3401" role="button"
+                                tabindex="0">
+                                <i class="iconfont icon-name"></i>
+                                <span id="userName"></span>
+                            </span>
+                            <ul class="el-dropdown-menu el-popper" style=" z-index: 2002;">
+                                <li class="el-dropdown-menu__item">个人中心</li>
+                                <li class="el-dropdown-menu__item">我的订单</li>
+                                <li class="el-dropdown-menu__item">我的钱包</li>
+                                <li class="el-dropdown-menu__item">商品管理</li>
+                                <li id="loginOut" class="el-dropdown-menu__item el-dropdown-menu__item--divided">
+                                    <i class="iconfont icon-tuichu"></i>&nbsp;&nbsp;退出</li>
+                                <div class="popper__arrow" style="left: 43.3828px;"></div>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <div class="sp-bg">
+            <div class="sp-container" style="display:none;">
+                <!-- 收货人信息 -->
+                <div class="cargo-container el-card" style="margin-top:0;">
+                    <div class="el-card__header">
+                        <div class="clearfix">
+                            <span>收货信息</span>
+                            <a href="#" @click="handleEditAddress" class="f-r">
+                                <i class="el-icon-circle-plus-outline"></i>&nbsp;新增</a>
+                        </div>
+                    </div>
+                    <div class="main-content">
+                        <div class="address-list" :class="{active: addressListShow == true}">
+                            <el-table :data="addressList" :show-header="false" class="list" style="width: 100%">
+                                <!-- <el-table-column type="selection" width="55"></el-table-column> -->
+                                <el-table-column width="40">
+                                    <template slot-scope="scope">
+                                        <el-radio v-model="radio" :label="scope.$index" @click.native="handleCheck(scope.row)"></el-radio>
+                                    </template>
+                                </el-table-column>
+                                <el-table-column prop="region+city" width="180">
+                                    <template slot-scope="scope">
+                                        <span v-text="scope.row.region"></span>&nbsp;
+                                        <span v-text="scope.row.city"></span>
+                                    </template>
+                                </el-table-column>
+                                <el-table-column prop="fbacode" width="180"></el-table-column>
+                                <el-table-column prop="default" width="180">
+                                    <template slot-scope="scope">
+                                        <el-button class="default" type="text" size="small" v-if="scope.row.default">[默认地址]</el-button>
+                                        <el-button @click="handleClick(scope.row)" type="text" size="small" v-else>设为默认地址</el-button>
+                                    </template>
+                                </el-table-column>
+                                <el-table-column width="180">
+                                    <template slot-scope="scope">
+                                        <el-button size="mini" type="text" @click="handleEditAddress(scope.$index, scope.row)">编辑</el-button>
+                                        <el-button size="mini" type="text" v-if="scope.$index != radio" @click="handleDeleteAddress(scope.$index, scope.row)">删除</el-button>
+                                    </template>
+                                </el-table-column>
+                            </el-table>
+                        </div>
+                        <div class="others">
+                            <a href="javascript:;" @click="addressListShow =! addressListShow" class="other">
+                                <span :class="{active: !addressListShow}">更多地址</span>
+                                <span :class="{active: addressListShow}">收起地址</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 货物信息 -->
+                <div class="cargo-container el-card">
+                    <div class="el-card__header">
+                        <div class="clearfix">
+                            <span>货物信息</span>
+                            <el-checkbox v-model="checked" style="float:right;">以承运商测量数据为准</el-checkbox>
+                        </div>
+                    </div>
+                    <div class="main-content">
+                        <div role="alert" class="el-alert el-alert--warning">
+                            <i class="el-alert__icon el-icon-warning is-big"></i>
+                            <div class="el-alert__content">
+                                <span class="el-alert__title">温馨提示：重量体积以实际测量为准！</span>
+                            </div>
+                        </div>
+                        <form action="" class="cargo-list m-t-20">
+                            <div id="qujian" class="form-group">
+                                <label class="label-control">需要上门取件：</label>
+                                <div class="radio-content">
+                                    <el-radio v-model="smenRadio" label="1">是</el-radio>
+                                    <el-radio v-model="smenRadio" label="2">否</el-radio>
+                                    <div class="cheap">优惠50元</div>
+                                    <span class="f-r">
+                                        <el-tooltip class="item" effect="dark" content="提示文字" placement="right">
+                                            <i id="wenhao1" class="iconfont icon-wenhao" style="font-size: 14px;"></i>
+                                        </el-tooltip>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- 需要上门取件时显示 -->
+                            <div class="dl-address form-group" v-show="smenRadio == 1">
+                                <label class="label-control">货物地址：</label>
+                                <div class="address-content">
+                                    <span class="address" v-text="smenAddress.address"></span>
+                                    <span class="phone" v-text="smenAddress.phone"></span>
+                                    <span class="operate">
+                                        <a href="javascript:;" @click="handlesmenAddress()" class="edit">编辑</a>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- 不需要上门取件时显示 -->
+                            <div class="dl-address form-group" v-show="smenRadio == 2">
+                                <label class="label-control">自提至：</label>
+                                <div class="address-content">
+                                    <span class="address">
+                                        <b>【星邮线下店】</b>广东省深圳市南龙岗区坂田第三工业园二栋一楼（小爽）</span>
+                                    <span class="phone">18682152960</span>
+                                    <span class="distance">距离您最近(
+                                        <i>1.8</i>km)</span>
+                                    <span class="operate">
+                                        <a href="javascript:;" @click="xxiaMap = true" class="edit">选择其它</a>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="sp-line"></div>
+                            <div class="form-group">
+                                <label class="label-control required">客户单号：</label>
+                                <div class="el-input el-input--small">
+                                    <input placeholder="客户单号" type="text" class="el-input__inner">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="label-control">FBA 号：</label>
+                                <div class="el-input el-input--small">
+                                    <input placeholder="FBA 号" type="text" class="el-input__inner">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="label-control">货物箱数：</label>
+                                <div class="el-input el-input--small">
+                                    <input placeholder="货物箱数" type="text" v-model="boxNumber" class="el-input__inner">
+                                </div>
+                            </div>
+                            <div class="form-group" v-show="guigeRadio == 1 && checked == true">
+                                <label class="label-control">SKU：</label>
+                                <el-button size="mini" type="text" @click="listTable = true">添加/编辑</el-button>
+                            </div>
+                            <div v-if="checked == false">
+                                <div class="sp-line"></div>
+                                <div class="form-group">
+                                    <label class="label-control">箱子规格相同：</label>
+                                    <div id="guige" class="radio-content">
+                                        <el-radio v-model="guigeRadio" label="1">是</el-radio>
+                                        <el-radio v-model="guigeRadio" label="2">否</el-radio>
+                                    </div>
+                                </div>
+                                <div class="form-group" v-show="guigeRadio == 1 && checked == false">
+                                    <label class="label-control">SKU：</label>
+                                    <el-button size="mini" type="text" @click="listTable = true">添加/编辑</el-button>
+                                </div>
+                                <div class="form-group" v-show="guigeRadio == 1">
+                                    <label class="label-control">箱子尺寸（CM）：</label>
+                                    <div class="size-content">
+                                        <div class="size">
+                                            <!-- <span class="title">长</span> -->
+                                            <div class="el-input el-input--small">
+                                                <input placeholder="长" v-model="guige.long" type="text" class="el-input__inner">
+                                            </div>
+                                        </div>
+                                        <div class="size">
+                                            <!-- <span class="title">宽</span> -->
+                                            <div class="el-input el-input--small">
+                                                <input placeholder="宽" v-model="guige.width" type="text" class="el-input__inner">
+                                            </div>
+                                        </div>
+                                        <div class="size">
+                                            <!-- <span class="title">高</span> -->
+                                            <div class="el-input el-input--small">
+                                                <input placeholder="高" v-model="guige.height" type="text" class="el-input__inner">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" v-show="guigeRadio == 1">
+                                    <label class="label-control">单箱重量（KG）：</label>
+                                    <div class="el-input el-input--small">
+                                        <input placeholder="单箱重量" v-model="guige.weight" type="text" class="el-input__inner">
+                                    </div>
+                                </div>
+                                <div v-show="guigeRadio == 2">
+                                    <div class="el-card__header clearfix">
+                                        <div class="clearfix">
+                                            <!-- <span>箱子信息</span> -->
+                                            <a href="javascript:;" @click="handleEditGuige" class="f-r">
+                                                <i class="el-icon-circle-plus-outline"></i>&nbsp;添加</a>
+                                        </div>
+                                    </div>
+                                    <div class="el-card__body">
+                                        <table class="sp-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>箱数</th>
+                                                    <th>长（CM）</th>
+                                                    <th>宽（CM）</th>
+                                                    <th>高（CM）</th>
+                                                    <th>毛重（KG）</th>
+                                                    <th>SKU信息</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="(item, index) in guigeArr" ::key="index" v-show="item">
+                                                    <td v-text="item.number"></td>
+                                                    <td v-text="item.long"></td>
+                                                    <td v-text="item.width"></td>
+                                                    <td v-text="item.height"></td>
+                                                    <td v-text="item.weight"></td>
+                                                    <td>
+                                                        <el-button size="mini" type="text" @click="listTable = true">添加/编辑SKU</el-button>
+                                                    </td>
+                                                    <td>
+                                                        <el-button size="mini" type="text" @click="handleEditGuige(item, index)">编辑</el-button>
+                                                        <el-button size="mini" type="text" @click="handleDeleteGuige(item, index)">删除</el-button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="label-control">总体积（CM3）：</label>
+                                    <div class="total-content">
+                                        <span v-text="allTiji"></span>
+                                        <span class="f-r">
+                                            <el-tooltip class="item" effect="dark" content="提示文字" placement="right">
+                                                <i id="wenhao1" class="iconfont icon-wenhao" style="font-size: 14px;"></i>
+                                            </el-tooltip>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="label-control">总重量（KG）：</label>
+                                    <div class="total-content">
+                                        <span v-text="allWeight"></span>
+                                        <span class="f-r">
+                                            <el-tooltip class="item" effect="dark" content="提示文字" placement="right">
+                                                <i id="wenhao1" class="iconfont icon-wenhao" style="font-size: 14px;"></i>
+                                            </el-tooltip>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <el-dialog class="sp-info-box" title="商品信息" :visible.sync="listTable">
+                    <div class="">
+                        <div style="margin-bottom:10px;">
+                            <div class="clearfix">
+                                <div style="float:right;">
+                                    <button type="button" class="el-button el-button--default el-button--small" @click="spHandleEdit">
+                                        <span>新增</span>
+                                    </button>
+                                    <button type="button" class="el-button el-button--default el-button--small" @click="lishiTable = true">
+                                        <span>历史商品列表</span>
+                                    </button>
+                                    <button type="button" class="el-button el-button--default el-button--small">
+                                        <span>批量导入商品</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <el-table :data="spList" tooltip-effect="dark" style="width: 100%">
+                            <el-table-column prop="sku" label="SKU">
+                            </el-table-column>
+                            <el-table-column prop="zhName" label="中文品名"></el-table-column>
+                            <el-table-column prop="enName" label="英文品名"></el-table-column>
+                            <el-table-column prop="code" label="海关编码"></el-table-column>
+                            <el-table-column prop="money" label="申报价值"></el-table-column>
+                            <el-table-column label="数量">
+                                <template slot-scope="scope">
+                                    <el-input v-model="scope.row.number"></el-input>
+                                </template>
+                            </el-table-column>
+                            <el-table-column label="图片">
+                                <template slot-scope="scope">
+                                    <img width="65" height="45" :src="scope.row.img">
+                                </template>
+                            </el-table-column>
+                            <el-table-column label="操作" width="200">
+                                <template slot-scope="scope">
+                                    <el-button size="mini" @click="spHandleEdit(scope.$index, scope.row)">编辑</el-button>
+                                    <el-button size="mini" type="danger" @click="spHandleDelete(scope.$index, scope.row)">删除</el-button>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                    </div>
+                    <div slot="footer" class="dialog-footer">
+                        <el-button type="primary" @click="handleSaveSp">保 存</el-button>
+                    </div>
+                </el-dialog>
+                <div class="text-center m-t-20">
+                    <a href="finishorder.html" class="el-button el-button--medium el-button--primary m-t-20">
+                        <span>提交资料</span>
+                    </a>
+                </div>
+
+
+                <!-- 历史商品列表弹层 -->
+                <el-dialog title="历史商品列表" :visible.sync="lishiTable">
+                    <el-table :data="lishiList" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
+                        <el-table-column type="selection" width="55"></el-table-column>
+                        <el-table-column prop="sku" label="SKU">
+                        </el-table-column>
+                        <el-table-column prop="zhName" label="中文品名"></el-table-column>
+                        <el-table-column prop="enName" label="英文品名"></el-table-column>
+                        <el-table-column prop="code" label="海关编码"></el-table-column>
+                        <el-table-column prop="money" label="申报价值"></el-table-column>
+                        <el-table-column prop="img" label="图片">
+                            <template slot-scope="scope">
+                                <img width="65" height="45" :src="scope.row.img">
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                    <div slot="footer" class="dialog-footer">
+                        <el-button type="success" @click="handleSaveSp">确 定</el-button>
+                    </div>
+                </el-dialog>
+                <!-- 新增商品信息弹层 -->
+                <el-dialog title="新增商品信息" :visible.sync="addSPinfo">
+                    <el-form size="small">
+                        <el-form-item label="SKU" :label-width="formLabelWidth">
+                            <el-input placeholder="SKU"></el-input>
+                        </el-form-item>
+                        <el-form-item label="中文品名" :label-width="formLabelWidth">
+                            <el-input placeholder="中文品名"></el-input>
+                        </el-form-item>
+                        <el-form-item label="海关编码" :label-width="formLabelWidth">
+                            <el-input placeholder="海关编码"></el-input>
+                        </el-form-item>
+                        <el-form-item label="英文品名" :label-width="formLabelWidth">
+                            <el-input placeholder="英文品名"></el-input>
+                        </el-form-item>
+                        <el-form-item label="单个净重" :label-width="formLabelWidth">
+                            <el-input placeholder="单个净重"></el-input>
+                        </el-form-item>
+                        <el-form-item label="申报价值" :label-width="formLabelWidth">
+                            <el-select v-model="value" placeholder="请选择币种" size="small" class="w-150">
+                                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                                </el-option>
+                            </el-select>
+                            <el-input placeholder="申报价值"></el-input>
+                        </el-form-item>
+                        <el-form-item label="商品数量" :label-width="formLabelWidth">
+                            <el-input placeholder="商品数量"></el-input>
+                        </el-form-item>
+                        <el-form-item label="商品图片" :label-width="formLabelWidth">
+                            <div class="file-input">
+                                <div class="file-new">
+                                    <i class="el-icon-plus"></i>
+                                    <input type="file" id="fileInput2" name="sop-content" class="file-original" @change="previewFiles()">
+                                </div>
+                                <div id="sop-content" class="file-content">
+                                    <img src="" alt="商品图片">
+                                </div>
+                            </div>
+                        </el-form-item>
+                    </el-form>
+                    <div slot="footer" class="dialog-footer">
+                        <el-button type="primary">继续添加</el-button>
+                        <el-button type="success" @click="handleAddSp">完 成</el-button>
+                    </div>
+                </el-dialog>
+                <!-- 新增/编辑收货地址弹层 -->
+                <el-dialog title="修改地址" :visible.sync="dialogAddAddress">
+                    <el-form size="small">
+                        <el-form-item label="目的国家" :label-width="formLabelWidth">
+                            <el-select v-model="form.region" placeholder="目的国家" filterable>
+                                <el-option label="美国" value="美国"></el-option>
+                                <el-option label="日本" value="日本"></el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="邮政编码" :label-width="formLabelWidth">
+                            <el-select v-model="form.postcode" placeholder="邮政编码" filterable>
+                                <el-option label="552123" value="552123"></el-option>
+                                <el-option label="434535" value="434535"></el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="FBA仓码" :label-width="formLabelWidth">
+                            <el-select v-model="form.fbacode" placeholder="FBA仓码" filterable>
+                                <el-option label="552123" value="552123"></el-option>
+                                <el-option label="434535" value="434535"></el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="城市" :label-width="formLabelWidth">
+                            <el-input v-model="form.city" placeholder="城市"></el-input>
+                        </el-form-item>
+                        <el-form-item label="详细地址" :label-width="formLabelWidth">
+                            <el-input v-model="form.address" placeholder="详细地址"></el-input>
+                        </el-form-item>
+                        <!-- 快递方式需要收件人 预留 -->
+                        <!-- <el-form-item label="收件人" :label-width="formLabelWidth">
+                        <el-input v-model="form.addressee"></el-input>
+                    </el-form-item>
+                    <el-form-item label="手机号码" :label-width="formLabelWidth">
+                        <el-select v-model="form.phone" placeholder="请选择活动区域" class="width-100">
+                            <el-option label="美国" value="meiguo"></el-option>
+                            <el-option label="田纳西州" value="xinaxizhou"></el-option>
+                        </el-select>
+                        <el-input v-model="form.name"></el-input>
+                    </el-form-item>
+                    <el-form-item label="电话号码" :label-width="formLabelWidth">
+                        <el-select v-model="form." placeholder="请选择活动区域" class="width-100">
+                            <el-option label="美国" value="meiguo"></el-option>
+                            <el-option label="田纳西州" value="xinaxizhou"></el-option>
+                        </el-select>
+                        <el-input v-model="form.name" placeholder="区号"></el-input>
+                        <el-input v-model="form.telephone" placeholder="电话号码"></el-input>
+                        <el-input v-model="form.name" placeholder="分机"></el-input>
+                    </el-form-item> -->
+                        <el-form-item :label-width="formLabelWidth">
+                            <el-checkbox v-model="form.default">设为默认地址</el-checkbox>
+                        </el-form-item>
+                    </el-form>
+                    <div slot="footer" class="dialog-footer">
+                        <el-button type="primary" @click="handleSaveAddress">保 存</el-button>
+                    </div>
+                </el-dialog>
+                <!-- 上门编辑收货地址弹层 -->
+                <el-dialog title="修改地址" :visible.sync="smenAddAddress">
+                    <el-form size="small">
+                        <el-form-item label="详细地址" :label-width="formLabelWidth">
+                            <el-input v-model.lazy="smenform.address" placeholder="详细地址"></el-input>
+                        </el-form-item>
+                        <el-form-item label="电话" :label-width="formLabelWidth">
+                            <el-input v-model.lazy="smenform.phone" placeholder="电话"></el-input>
+                        </el-form-item>
+                    </el-form>
+                    <div slot="footer" class="dialog-footer">
+                        <el-button type="primary" @click="handleSmenSaveAddress">保 存</el-button>
+                    </div>
+                </el-dialog>
+                <!-- 选择其它线下店地址弹层 -->
+                <el-dialog title="修改地址" :visible.sync="xxiaMap" class="baidu-map">
+                    <!--百度地图容器-->
+                    <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="10" :scroll-wheel-zoom="true" @mousedown="infomousedown(type, target, point,pixel)">
+                        <!-- 定位 -->
+                        <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :show-addressBar="true" :auto-location="true" @location-success="islocationSuccess(point, AddressComponent, marker)"></bm-geolocation>
+                        <!-- 类型 -->
+                        <bm-map-type :map-types="['BMAP_NORMAL_MAP', 'BMAP_HYBRID_MAP']" anchor="BMAP_ANCHOR_TOP_LEFT"></bm-map-type>
+                        <!-- 点 -->
+                        <bm-marker :position="{lng: 116.404, lat: 39.915}" :dragging="true" @click="infoWindowOpen(type, target)">
+                            <bm-info-window :show="show" @close="infoWindowClose" @open="infoWindowOpen">我爱北京天安门</bm-info-window>
+                        </bm-marker>
+                    </baidu-map>
+                    <el-form size="small" class="m-t-20">
+                        <el-form-item label="已选地址" label-width="70px">
+                            【星邮线下店】广东省深圳市坂田第三工业区二栋一楼
+                        </el-form-item>
+                    </el-form>
+                    <div slot="footer" class="dialog-footer">
+                        <el-button type="primary" @click="handleSmenSaveMap">确 定</el-button>
+                    </div>
+                </el-dialog>
+                <!-- 添加箱子信息 -->
+                <el-dialog title="添加货物信息" :visible.sync="addGuigeShow">
+                    <el-form size="small">
+                        <el-form-item label="箱数(CM)" :label-width="formLabelWidth" class="must">
+                            <el-input v-model="addGuige.number" type="number" min="1" placeholder="箱数"></el-input>
+                        </el-form-item>
+                        <el-form-item label="长(CM)" :label-width="formLabelWidth" class="must">
+                            <el-input v-model="addGuige.long" type="number" placeholder="长"></el-input>
+                        </el-form-item>
+                        <el-form-item label="宽(CM)" :label-width="formLabelWidth" class="must">
+                            <el-input v-model="addGuige.width" type="number" placeholder="宽"></el-input>
+                        </el-form-item>
+                        <el-form-item label="高(CM)" :label-width="formLabelWidth" class="must">
+                            <el-input v-model="addGuige.height" type="number" placeholder="高"></el-input>
+                        </el-form-item>
+                        <el-form-item label="毛重(CM)" :label-width="formLabelWidth" class="must">
+                            <el-input v-model="addGuige.weight" type="number" placeholder="毛重"></el-input>
+                        </el-form-item>
+                        <el-form-item :label-width="formLabelWidth" class="erro-info">
+                            <div class="erro-info-text" v-text="addGuigeErro"></div>
+                        </el-form-item>
+                    </el-form>
+                    <div slot="footer" class="dialog-footer">
+                        <el-button type="primary" @click.native="handleSaveguige">保 存</el-button>
+                    </div>
+                </el-dialog>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <ul>
+                <li>
+                    <a href="index.html ">首页</a>
+                </li>
+                <li>
+                    <a href="index.html " class=" ">省钱方案</a>
+                </li>
+                <li>
+                    <a href="index.html " class=" ">关于我们</a>
+                </li>
+                <li>
+                    <a href="index.html " class=" ">联系我们</a>
+                </li>
+            </ul>
+            <div class="bei ">
+                <span>Copyright@2017 fba.top,All Rights Reserved</span>
+                <i>|</i>
+                <span>粤ICP备15039098号-2</span>
+            </div>
+        </footer>
+    </div>
+</body>
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script src="js/sp-func.js" type="text/javascript"></script>
+<script src="js/vue.js "></script>
+<script src="js/element-ui.js "></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=t3DeetT1kUQfXULKfQuliO6RP7LIsmOZ"></script>
+<script src="https://unpkg.com/vue-baidu-map"></script>
+<script>
+    //注册百度地图组件
+    Vue.use(VueBaiduMap.default, {
+        ak: 'YOUR_APP_KEY'
+    })
+    setTimeout(function () {
+        $('.sp-container').css('display', 'block');
+    }, 200)
+    var name = SPFunc.getRequest();
+    new Vue({
+        el: '#app',
+        data: {
+            //百度地图
+            center: '广东省深圳市',
+            zoom: 3,
+            show: false,
+            checked: true,
+            listTable: false,
+            options: [{
+                value: '选项1',
+                label: '黄金糕'
+            }, {
+                value: '选项2',
+                label: '双皮奶'
+            }],
+            value: '',
+            radio: 0,
+            smenRadio: '1',
+            dialogAddAddress: false,
+            form: {
+                id: '',
+                region: '',
+                postcode: '',
+                fbacode: '',
+                city: '',
+                address: '',
+                default: false
+            },
+            formLabelWidth: '120px',
+            addressList: [{
+                id: 1,
+                region: '美国',
+                postcode: '1868215',
+                fbacode: '1仓',
+                city: '纽约',
+                address: '德克萨斯州达拉斯',
+                default: true,
+            }, {
+                id: 2,
+                region: '日本',
+                postcode: '2152960',
+                fbacode: '2仓',
+                city: '九龙',
+                address: '密西西比',
+                default: false,
+            }, {
+                id: 3,
+                region: '美国',
+                postcode: '5186860',
+                fbacode: '3仓',
+                city: '洛杉矶',
+                address: '德克萨斯州达拉斯小牛X',
+                default: false,
+            }],
+            addressListShow: false,
+            smenAddress: {
+                address: '广东省深圳市南山区学府路南山智园B11栋14楼(Daniel)',
+                phone: '18682152960'
+            },
+            smenform: {
+                address: '',
+                phone: ''
+            },
+            smenAddAddress: false,
+            xxiaMap: false,
+            boxNumber: '',
+            guige: {
+                long: '',
+                width: '',
+                height: '',
+                weight: ''
+            },
+            guigeArr: [],
+            addGuige: {
+                number: '',
+                long: '',
+                width: '',
+                height: '',
+                weight: '',
+            },
+            addGuigeErro: '',
+            guigeRadio: '1',
+            addGuigeShow: false,
+            addSPinfo: false,
+            lishiTable: false,
+            spList: [],
+            lishiList: [{
+                sku: 'HF001',
+                zhName: '黑色签字笔',
+                enName: 'pen',
+                enName: 'pen',
+                code: '547896542',
+                money: '￥5.00',
+                img: 'https://y.gtimg.cn/music/photo_new/T001R300x300M000002J4UUk29y8BY.jpg?max_age=2592000'
+            }],
+            spListSelection: []
+        },
+        computed: {
+            //总体积
+            allTiji: function () {
+                if (this.guigeRadio == '1') {
+                    if (this.boxNumber && this.guige.long && this.guige.width && this.guige.height) {
+                        return (parseInt(this.boxNumber) * parseInt(this.guige.long) * parseInt(this.guige.width) * parseInt(this.guige.height)) / 1000000
+                    } else {
+                        return 0;
+                    }
+                } else {
+                    if (this.guigeArr.length > 0) {
+                        let num = 0;
+                        this.guigeArr.forEach((d, i) => {
+                            if (d.number && d.long && d.width && d.height) {
+                                num += (parseInt(d.number) * parseInt(d.long) * parseInt(d.width) * parseInt(d.height)) / 1000000
+                            }
+                        })
+                        return num;
+                    } else {
+                        return 0;
+                    }
+                }
+            },
+            //总重量
+            allWeight: function () {
+                if (this.guigeRadio == '1') {
+                    let weight = this.guige.weight && this.boxNumber ? parseInt(this.boxNumber) * parseInt(this.guige.weight) : 0;
+                    if (this.boxNumber && this.guige.weight) {
+                        return weight;
+                    } else {
+                        return 0;
+                    }
+                } else {
+                    if (this.guigeArr.length == 0) return 0;
+                    num = 0;
+                    this.guigeArr.forEach((d, i) => {
+                        if (d.number && d.weight) {
+                            num += parseInt(d.number) * parseInt(d.weight);
+                        }
+                    })
+                    return num;
+                }
+            }
+        },
+        watch: {
+            //监听规格是否相同
+            guigeRadio: function () {
+                this.guige = {
+                    long: '',
+                    width: '',
+                    height: '',
+                    weight: ''
+                }
+                this.guigeArr = []
+            }
+        },
+        methods: {
+            //百度地图
+            infoWindowClose() {
+                this.show = false
+            },
+            infoWindowOpen(type, target) {
+                this.show = true;
+                console.log(type)
+                console.log(target)
+            },
+            islocationSuccess(point, AddressComponent, marker) {
+                console.log(point)
+                console.log(AddressComponent)
+                console.log(marker)
+
+            },
+            //------------------收货信息-----------------------------//
+            //保存地址
+            handleSaveAddress() {
+                this.dialogAddAddress = false;
+                if (this.form.default) {//设置为默认地址
+                    this.addressList.forEach((d, i) => {
+                        d.default = false;
+                    })
+                }
+                if (this.form.id) {
+                    this.addressList.forEach((d, i) => {
+                        if (d.id == this.form.id) {
+                            d = this.form;
+                            return;
+                        }
+                    })
+                } else {
+                    this.form.id = this.addressList.length + 1;
+                    this.addressList.unshift(this.form);
+                }
+            },
+            //设为默认地址
+            handleClick(row) {
+                this.addressList.forEach((d, i) => {
+                    d.default = false;
+                })
+                row.default = true;
+            },
+            //编辑地址
+            handleEditAddress(index, row) {
+                this.dialogAddAddress = true;
+                this.form = {
+                    id: '',
+                    region: '',
+                    postcode: '',
+                    fbacode: '',
+                    city: '',
+                    address: '',
+                    default: false
+                }
+                row && (this.form = row);
+                console.log(index, row);
+            },
+            //删除地址
+            handleDeleteAddress(index, row) {
+                this.addressList.splice(index, 1)
+                console.log(index, row);
+            },
+            //选中地址
+            handleCheck(row) {
+                console.log(row);
+            },
+            //------------------货物信息-----------------------------------------//
+            //上门取件编辑
+            handlesmenAddress() {
+                this.smenAddAddress = true;
+                this.smenform.address = this.smenAddress.address;
+                this.smenform.phone = this.smenAddress.phone;
+            },
+            //上门取件保存
+            handleSmenSaveAddress() {
+                this.smenAddAddress = false;
+                this.smenAddress = this.smenform;
+            },
+            //百度地图
+            handleSmenSaveMap() {
+                this.xxiaMap = false;
+            },
+            //------------------箱子信息-----------------------------------------//
+            //保存
+            handleSaveguige() {
+                // let obj = {
+                //     number: '数量',
+                //     long: '长',
+                //     width: '宽',
+                //     height: '高',
+                //     weight: '重量',
+                // }
+                // for (var k in this.addGuige) {
+                //     if(this.addGuige[k] == ''){
+                //         this.addGuigeErro = obj[k] + '不能为空！';
+                //         return;
+                //     }else{
+                //         this.addGuigeErro = '';
+                //     }
+                // }
+                this.addGuigeShow = false;
+                this.guigeArr.push(this.addGuige);
+                this.addGuige = {
+                    number: '',
+                    long: '',
+                    width: '',
+                    height: '',
+                    weight: '',
+                }
+            },
+            //新增/编辑箱子信息
+            handleEditGuige(item, index) {
+                this.addGuigeShow = true;
+                this.addGuige = {
+                    number: '',
+                    long: '',
+                    width: '',
+                    height: '',
+                    weight: '',
+                }
+                if (index) {
+                    this.addGuige = item;
+                }
+            },
+            //删除
+            handleDeleteGuige(item, index) {
+                this.guigeArr.splice(index, 1);
+            },
+            //-------------------商品信息------------------
+            //新增/编辑商品信息
+            spHandleEdit(index, row) {
+                this.addSPinfo = true;
+            },
+            //删除商品信息
+            spHandleDelete(index, row) {
+                this.spList.splice(index, 1);
+            },
+            //新增/编辑商品信息保存
+            handleAddSp(index, row) {
+                this.addSPinfo = false;
+            },
+            //历史商品列表选中
+            handleSelectionChange(val) {
+                this.spListSelection = val;
+            },
+            //历史商品列表保存
+            handleSaveSp() {
+                this.lishiTable = false;
+                this.spListSelection.forEach((d, i) => {
+                    this.spList.push(d)
+                })
+            },
+            // 图片本地上传预览
+            previewFiles() {
+                var preview = document.querySelector('.file-content img');
+                var file = document.querySelector('input[type=file]').files[0];
+                var reader = new FileReader();
+
+                reader.addEventListener("load", function () {
+                    if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
+                        preview.src = reader.result;
+                        preview.style.width = "50px"
+                        preview.style.height = "50px"
+                        preview.style.display = 'block'
+                    } else {
+                        alert('请上传合法的图片类型，如:jpg, jpeg, png, gif')
+                    }
+                }, false);
+
+                if (file) {
+                    reader.readAsDataURL(file);
+                }
+
+            }
+
+        },
+        mounted: function () {
+            this.$nextTick(function () {
+                //当前页面登陆/退出
+                SPFunc.inLogin();
+
+                //手机端菜单点击
+                SPFunc.navClick();
+
+            })
+        }
+    })
+</script>
+
+</html>
