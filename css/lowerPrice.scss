@@ -84,10 +84,15 @@
 }
 
 .sp-data-container {
-  .lg-img {
+  margin-top: 0;
+  .img-box{
     width: 100%;
-    height: auto;
-    margin-bottom: 10px;
+    min-height: 200px;
+    .lg-img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
   }
 }
 
@@ -270,5 +275,10 @@
   }
   100% {
     border: 1px solid #f65454;
+  }
+}
+@media (min-width: 768px) {
+  .sp-data-container {
+    margin-top: 40px;
   }
 }

@@ -66,9 +66,11 @@
         <div class="sp-bg">
             <div class="sp-container">
                 <main class="el-main sp-fff-bg">
-                    <div class="m-t-40 el-row sp-data-container" style="margin-left: -10px; margin-right: -10px;">
+                    <div class="el-row sp-data-container" style="margin-left: -10px; margin-right: -10px;">
                         <div class="el-col el-col-24 el-col-xs-24 el-col-md-10" style="padding-left: 10px; padding-right: 10px;">
-                            <img class="lg-img" src="img/img_bg.jpg" alt="img">
+                            <div class="img-box">
+                                <img class="lg-img" src="img/img_bg.jpg" alt="img">
+                            </div>
                             <div id="sp-data-box" class="sp-data-box calendar">
                                 <div class="sp-loding">
                                     <i class="el-icon-loading"></i>
@@ -490,18 +492,15 @@
                 //资源日历
                 var mySchedule = new Schedule({
                     el: '#sp-data-box',
-                    // date: '2018-1-12',
+                    // date: '2018-3-5',
                     saleData: getData(),
-                    clickCb: function (y, m, d, w) {
+                    clickCb: function (w) {
                         _this.count = w;//剩余数量
                         setTimeout(function () {
                             if (_this.weight > w) {
                                 _this.inAnimate($('#sp-weight'), 'in');
                                 _this.weight = w;
                             }
-                            m = m.toString()[1] ? m : "0" + m;
-                            d = d.toString()[1] ? d : "0" + d;
-                            $('#cutData').html(y + '-' + m + '-' + d);
                             _this.inAnimate($('#cutData'), 'in');
                         }, 800)
 

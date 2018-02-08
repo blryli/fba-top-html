@@ -224,7 +224,7 @@ div[class$="-container"] .main-content {
     width: auto;
     display: inline-block;
   }
-  .cargo-list .form-group > div.address-content span {
+  .cargo-list .form-group > div.address-content >span {
     margin-right: 30px;
   }
   .cargo-list .total-content {
@@ -387,13 +387,19 @@ div[class$="-container"] .main-content {
     min-height: 60%;
   }
 }
-//百度地图
+//高德地图
 .baidu-map {
-  .el-dialog__body {
+  right: 100%;;
+  .el-dialog__body{
     padding: 10px 20px 0;
   }
 }
-.map {
-  width: 100%;
-  height: 360px;
+.v-modal{
+  display: none;
+}
+.el-vue-amap-container {
+  .el-vue-amap.amap-container {
+    height: 500px;
+    width: 100%;
+  }
 }

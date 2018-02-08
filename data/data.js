@@ -9,7 +9,7 @@ function getData() {
         "unit": "kg",
         "time": "20-25"
     }, {
-        "data": "2018-01-22",
+        "data": "2018-03-22",
         "money": 20,
         "par": 22,
         "count": 1900,
@@ -36,7 +36,7 @@ function getData() {
         "unit": "cbm",
         "time": "20-25"
     }, {
-        "data": "2018-01-19",
+        "data": "2018-03-19",
         "money": 12,
         "par": 20,
         "count": 1610,
@@ -45,7 +45,7 @@ function getData() {
         "unit": "kg",
         "time": "20-25"
     }, {
-        "data": "2018-02-01",
+        "data": "2018-03-01",
         "money": 35,
         "par": 40,
         "count": 3150,
@@ -54,10 +54,19 @@ function getData() {
         "unit": "cbm",
         "time": "20-25"
     }, {
-        "data": "2018-02-06",
+        "data": "2018-03-06",
         "money": 29,
         "par": 33,
         "count": 1210,
+        "more": false,
+        "hot": false,
+        "unit": "kg",
+        "time": "20-25"
+    }, {
+        "data": "2018-02-05",
+        "money": 19,
+        "par": 37,
+        "count": 1910,
         "more": false,
         "hot": false,
         "unit": "kg",

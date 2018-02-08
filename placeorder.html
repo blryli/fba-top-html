@@ -155,12 +155,11 @@
                                 <label class="label-control">自提至：</label>
                                 <div class="address-content">
                                     <span class="address">
-                                        <b>【星邮线下店】</b>广东省深圳市南龙岗区坂田第三工业园二栋一楼（小爽）</span>
-                                    <span class="phone">18682152960</span>
-                                    <span class="distance">距离您最近(
-                                        <i>1.8</i>km)</span>
+                                        <b v-text="userCarry.title"></b><span v-text="userCarry.address"></span></span>
+                                    <span class="phone" v-text="userCarry.phone"></span>
+                                    <span class="distance"><span v-text="userCarry.distance+'km'"></span>&nbsp;<span v-if="userCarry.distance == minNumber">(距离最近)</span></span>
                                     <span class="operate">
-                                        <a href="javascript:;" @click="xxiaMap = true" class="edit">选择其它</a>
+                                        <a href="javascript:;" @click="checkOther" class="edit">选择其它</a>
                                     </span>
                                 </div>
                             </div>
@@ -484,20 +483,20 @@
                 </el-dialog>
                 <!-- 选择其它线下店地址弹层 -->
                 <el-dialog title="修改地址" :visible.sync="xxiaMap" class="baidu-map">
-                    <!--百度地图容器-->
-                    <baidu-map class="map" :center="{lng: 116.404, lat: 39.915}" :zoom="10" :scroll-wheel-zoom="true" @mousedown="infomousedown(type, target, point,pixel)">
-                        <!-- 定位 -->
-                        <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :show-addressBar="true" :auto-location="true" @location-success="islocationSuccess(point, AddressComponent, marker)"></bm-geolocation>
-                        <!-- 类型 -->
-                        <bm-map-type :map-types="['BMAP_NORMAL_MAP', 'BMAP_HYBRID_MAP']" anchor="BMAP_ANCHOR_TOP_LEFT"></bm-map-type>
-                        <!-- 点 -->
-                        <bm-marker :position="{lng: 116.404, lat: 39.915}" :dragging="true" @click="infoWindowOpen(type, target)">
-                            <bm-info-window :show="show" @close="infoWindowClose" @open="infoWindowOpen">我爱北京天安门</bm-info-window>
-                        </bm-marker>
-                    </baidu-map>
+                    <!--高德地图-->
+                    <el-amap ref="map" vid="amapDemo" :amap-manager="amapManager" :center="center" :zoom="zoom" :plugin="plugin" :events="events" class="amap-demo">
+                        <!-- <el-amap-marker vid="component-marker" :position="componentMarker.position" :content-render="componentMarker.contentRender" ></el-amap-marker> -->
+                        <el-amap-marker v-for="(marker, index) in markers" :position="marker.position" :title="marker.address" :events="marker.events" :visible="marker.visible" raise-on-drag="true" :draggable="marker.draggable" :vid="index" :key="index"></el-amap-marker>
+                    </el-amap>
                     <el-form size="small" class="m-t-20">
                         <el-form-item label="已选地址" label-width="70px">
-                            【星邮线下店】广东省深圳市坂田第三工业区二栋一楼
+                            <b v-text="title"></b><span v-text="address"></span>
+                        </el-form-item>
+                        <el-form-item label="联系电话" label-width="70px">
+                            <span v-text="phone"></span>
+                        </el-form-item>
+                        <el-form-item label="坐标" label-width="70px">
+                            <span v-text="center"></span>//线上隐藏
                         </el-form-item>
                     </el-form>
                     <div slot="footer" class="dialog-footer">
@@ -560,23 +559,68 @@
 <script src="js/sp-func.js" type="text/javascript"></script>
 <script src="js/vue.js "></script>
 <script src="js/element-ui.js "></script>
-<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=t3DeetT1kUQfXULKfQuliO6RP7LIsmOZ"></script>
-<script src="https://unpkg.com/vue-baidu-map"></script>
+<script src="js/vue-amap.js"></script>
 <script>
-    //注册百度地图组件
-    Vue.use(VueBaiduMap.default, {
-        ak: 'YOUR_APP_KEY'
-    })
+    // 初始化高德地图的 key 和插件
+    window.VueAMap.initAMapApiLoader({
+        key: '67cbf25aaeeb270f65bf66afaa028cb5',
+        plugin: ['Autocomplete', 'PlaceSearch', 'Scale', 'OverView', 'ToolBar', 'MapType', 'PolyEditor', 'AMap.CircleEditor', 'AMap.Geolocation', 'Geocoder']
+    });
     setTimeout(function () {
         $('.sp-container').css('display', 'block');
     }, 200)
     var name = SPFunc.getRequest();
+
+    let amapManager = new VueAMap.AMapManager();
     new Vue({
         el: '#app',
         data: {
             //百度地图
-            center: '广东省深圳市',
-            zoom: 3,
+            amapManager,
+            zoom: 9,
+            center: [0, 0],
+            events: {},
+            plugin: [],
+            address: '',
+            markers: [{
+                title: '【东莞仓】',
+                position: [113.753228, 22.9833],
+                address: '广东省东莞市南城街道东骏豪苑(东骏路)',
+                phone: '13713262222',
+                visible: true,
+            }, {
+                title: '【龙岗仓】',
+                position: [114.234824, 22.723301],
+                address: '广东省深圳市龙岗区龙城街道宏兴苑',
+                phone: '13713263333',
+                visible: true,
+            },{
+                title: '【坂田仓】',
+                position: [114.07314, 22.62579],
+                address: '广东省深圳市龙岗区坂田第三工业区二栋一楼',
+                phone: '13713261111',
+                visible: true,
+            }],
+            title: '',
+            phone: '',
+            distance: '',
+            minNumber: '',
+            xxiaMap: true,
+            start: {
+                longitude: 0,
+                latitude: 0
+            },
+            end: {
+                longitude: 0,
+                latitude: 0
+            },
+            userCarry: {//自提地址
+                title: '',
+                address: '',
+                phone: '',
+                distance: ''
+            },
+            //------
             show: false,
             checked: true,
             listTable: false,
@@ -636,7 +680,6 @@
                 phone: ''
             },
             smenAddAddress: false,
-            xxiaMap: false,
             boxNumber: '',
             guige: {
                 long: '',
@@ -668,6 +711,76 @@
                 img: 'https://y.gtimg.cn/music/photo_new/T001R300x300M000002J4UUk29y8BY.jpg?max_age=2592000'
             }],
             spListSelection: []
+        },
+        created: function () {
+            var self = this;
+            // 地图事件
+            this.events = {
+                init: (o) => {
+                    //创建地图获取城市
+                    // o.getCity(result => {
+                    //     console.log(result)
+                    // })
+                },
+                'moveend': () => {
+                },
+                'zoomchange': () => {
+                },
+                'click': (e) => {
+                    //点击地图获取经纬度和具体地址
+                    self.getGeocoder(e.lnglat);
+                }
+            }
+            //---------地图插件-----------
+            //工具条
+            this.plugin = ['ToolBar', {
+                pName: 'MapType',
+                defaultType: 0,
+                autoPosition: true,
+                useNative: true,
+            }, {//定位插件---------1111111111
+                pName: 'Geolocation',
+                events: {
+                    init(o) {
+                        // 定位 初始坐标
+                        o.getCurrentPosition((status, result) => {
+                            if (result && result.position) {
+                                let obj = {longitude: result.position.lng, latitude: result.position.lat};
+                                self.center = [result.position.lng, result.position.lat];
+                                self.start = obj;
+                                console.log('1>>>>初始点')
+                                console.log(result)
+                                self.address = result.formattedAddress
+                                self.$nextTick(function() {
+                                    //距离最近的仓库
+                                    let arr = [];
+                                    self.markers.forEach((d, i) => {
+                                        let obj = {longitude: d.position[0], latitude: d.position[1]},
+                                            num = self.calculateLineDistance(self.start, obj).toFixed(2);
+                                        self.$set(d, 'distance', num);
+                                        arr.push(num)
+                                    })
+                                    let minN = Math.min.apply(null,arr),
+                                        minIndex = 0;
+                                        self.minNumber = minN;
+                                    for (let i = 0; i < arr.length; i++) {
+                                        if(minN == arr[i]){
+                                            minIndex = i;
+                                        }
+                                    }
+                                    self.title = self.userCarry.title = self.markers[minIndex].title;
+                                    self.address = self.userCarry.address = self.markers[minIndex].address;
+                                    self.phone = self.userCarry.phone = self.markers[minIndex].phone;
+                                    self.distance = self.userCarry.distance = minN;
+                                });
+                            }
+                        });
+                    },
+                    'click': (e) => {
+                        alert('Geolocation');
+                    }
+                }
+            }]
         },
         computed: {
             //总体积
@@ -726,20 +839,58 @@
             }
         },
         methods: {
-            //百度地图
-            infoWindowClose() {
-                this.show = false
-            },
-            infoWindowOpen(type, target) {
-                this.show = true;
-                console.log(type)
-                console.log(target)
-            },
-            islocationSuccess(point, AddressComponent, marker) {
-                console.log(point)
-                console.log(AddressComponent)
-                console.log(marker)
+            //获取经纬度和具体地址
+            getGeocoder(lnglat) {
+                console.log(lnglat)
+                let { lng, lat } = lnglat;
+                var self = this;
+                this.center = [lng, lat];
 
+                // 这里通过高德 SDK 完成。
+                var geocoder = new AMap.Geocoder({
+                    radius: 1000,
+                    extensions: "all"
+                });
+                geocoder.getAddress([lng, lat], function (status, result) {
+                    if (status === 'complete' && result.info === 'OK') {
+                        if (result && result.regeocode) {
+                            self.address = result.regeocode.formattedAddress;
+                            self.$nextTick(function() {
+                                console.log('获取经纬度和具体地址')
+                            });
+                        }
+                    }
+                });
+            },
+            //高德地图确认
+            handleSmenSaveMap() {
+                this.xxiaMap = false;
+                this.userCarry.title = this.title;
+                this.userCarry.address = this.address;
+                this.userCarry.phone = this.phone;
+                this.userCarry.distance = this.distance;
+            },
+            calculateLineDistance(start, end) {
+                let lon1 = (Math.PI / 180) * start.longitude;
+                let lon2 = (Math.PI / 180) * end.longitude;
+                let lat1 = (Math.PI / 180) * start.latitude;
+                let lat2 = (Math.PI / 180) * end.latitude;
+
+                // 地球半径
+                let R = 6371;
+
+                // 两点间距离 km，如果想要米的话，结果*1000
+                let d = Math.acos(Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1))
+                    * R;
+
+                return d;
+            },
+            //选择其他地址
+            checkOther() {
+                this.xxiaMap = true;
+                setTimeout(function() {
+                    $('.v-modal').css('display', 'block');
+                }, 100)
             },
             //------------------收货信息-----------------------------//
             //保存地址
@@ -804,10 +955,6 @@
             handleSmenSaveAddress() {
                 this.smenAddAddress = false;
                 this.smenAddress = this.smenform;
-            },
-            //百度地图
-            handleSmenSaveMap() {
-                this.xxiaMap = false;
             },
             //------------------箱子信息-----------------------------------------//
             //保存
@@ -904,16 +1051,38 @@
 
         },
         mounted: function () {
+            var self = this;
             this.$nextTick(function () {
                 //当前页面登陆/退出
                 SPFunc.inLogin();
 
                 //手机端菜单点击
                 SPFunc.navClick();
-
+                
+                setTimeout(function() {
+                    self.xxiaMap = false;
+                    setTimeout(function() {
+                        $('.baidu-map').css('right', '0');
+                    }, 500)
+                }, 200)
+                //初始化时选择距离最近的仓库
+                
+                //渲染完成添加地图点的点击事件
+                self.markers.forEach((d, i) => {
+                    self.$set(d,  'events', {
+                        click: (e) => {
+                            console.log(d)
+                            self.center = d.position;
+                            self.title = d.title;
+                            self.address = d.address;
+                            self.phone = d.phone;
+                            self.distance = d.distance;
+                        }
+                    })
+                })
             })
         }
-    })
+    });
 </script>
 
 </html>
